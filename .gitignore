@@ -1,0 +1,15 @@
+# Virtual environment (recreatable from requirements.txt, never commit it)
+.venv/
+
+# Python bytecode caches
+__pycache__/
+*.pyc
+
+# Generated output (rebuild by running the scripts)
+output/
+
+# Editor / OS clutter
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
