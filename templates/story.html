@@ -1,0 +1,134 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Where is your nearest municipal office?</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="How far Ontarians live from their nearest municipal office, and how the answer changes with Toronto and Niagara.">
+<style>
+:root{--bg:#fafaf8;--ink:#1d2330;--muted:#5b6475;--card:#fff;--line:#dfe2e8;--accent:#1f77b4;--shadow:0 1px 8px rgba(20,30,50,.12)}
+@media (prefers-color-scheme:dark){:root{--bg:#14171d;--ink:#e8eaf0;--muted:#a3abbb;--card:#1d222b;--line:#2e3542;--accent:#6aaee0;--shadow:0 1px 8px rgba(0,0,0,.5)}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent)}
+header{max-width:1100px;margin:0 auto;padding:56px 20px 8px}
+h1{font-size:clamp(30px,5vw,48px);line-height:1.15;margin:0 0 12px;letter-spacing:-.01em}
+.lede{font-size:clamp(18px,2.4vw,22px);color:var(--muted);max-width:44em;margin:0}
+.cards{max-width:1100px;margin:28px auto 8px;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card .num{font-size:34px;font-weight:700;line-height:1.1;letter-spacing:-.01em}
+.card .lab{color:var(--muted);font-size:14px;margin-top:4px}
+.story{max-width:1100px;margin:24px auto 0;padding:0 20px;display:grid;grid-template-columns:minmax(280px,400px) 1fr;gap:32px}
+.steps{padding-bottom:30vh}
+.step{min-height:78vh;display:flex;flex-direction:column;justify-content:center;opacity:.45;transition:opacity .25s}
+.step.active{opacity:1}
+.step h2{font-size:26px;line-height:1.2;margin:0 0 10px}
+.step p{margin:0 0 12px}
+.kicker{font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+.fig{display:flex;gap:18px;flex-wrap:wrap;margin:6px 0 4px}
+.fig div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+.fig b{display:block;font-size:22px;line-height:1.2}.fig span{font-size:13px;color:var(--muted)}
+.mapwrap{position:sticky;top:16px;height:calc(100vh - 32px);align-self:start;display:flex;flex-direction:column}
+iframe{flex:1;width:100%;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);background:#e8eef3}
+#caption{font-size:13px;color:var(--muted);padding:8px 2px 0}
+section.end{max-width:760px;margin:0 auto;padding:40px 20px 80px}
+section.end h2{font-size:28px;margin:0 0 10px}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:10px 18px;border-radius:8px}
+@media (prefers-color-scheme:dark){.btn{color:#10151c}}
+ul.notes{color:var(--muted);font-size:15px;padding-left:20px}
+@media (max-width:820px){
+  .story{display:block;padding:0 14px}
+  .mapwrap{top:0;height:46vh;z-index:5;padding:8px 0;background:var(--bg)}
+  .step{min-height:60vh;opacity:1}
+  .steps{padding-bottom:10vh}
+}
+</style></head><body>
+<header>
+  <h1>Where is your nearest municipal office?</h1>
+  <p class="lede">Ontario has __TOTAL__ municipal offices. Draw a line halfway between each pair of neighbouring offices and the province falls into zones: everyone inside a zone is closer to that zone's office than to any other. These maps show how big those zones are, who lives in them, and how much they change depending on which offices you count.</p>
+</header>
+
+<div class="cards">
+  <div class="card"><div class="num">__LOCAL_MEAN__ km</div><div class="lab">average straight-line distance to the nearest local office</div></div>
+  <div class="card"><div class="num">__LOCAL_P90__ km</div><div class="lab">covers 9 in 10 people</div></div>
+  <div class="card"><div class="num">__LOCAL_MAX__ km</div><div class="lab">the farthest any populated area is from a local office</div></div>
+  <div class="card"><div class="num">__REGIONAL_MEAN__ km</div><div class="lab">average if only regional and single-tier offices counted</div></div>
+</div>
+
+<main class="story">
+  <div class="steps">
+    <section class="step" data-step="province">
+      <div class="kicker">The big picture</div>
+      <h2>One office for every zone</h2>
+      <p>Each coloured zone belongs to one office. Blue are lower-tier offices (a town or township inside a region), green are single-tier cities and townships that run everything themselves.</p>
+      <p>Zones are small where offices are close together, mostly across southern Ontario, and large where a single office covers a lot of land.</p>
+    </section>
+    <section class="step" data-step="distance">
+      <div class="kicker">The big picture</div>
+      <h2>How far is the nearest one?</h2>
+      <p>Shading each zone by the average distance people in it live from their office, darker means farther. Weighted by population, the typical person is __LOCAL_MEDIAN__ km from the nearest local office, and __LOCAL_WITHIN10__% of people are within 10 km. Count only regional and single-tier offices and that falls to __REGIONAL_WITHIN10__%.</p>
+    </section>
+
+    <section class="step" data-step="toronto-local">
+      <div class="kicker">Zoom in: Toronto</div>
+      <h2>Toronto, with its neighbours</h2>
+      <p>Toronto is a single-tier city, so its office competes directly with every neighbour's: Mississauga, Brampton, Vaughan, Markham, Pickering and more. Here, with all of the local offices counted, Toronto's zone covers:</p>
+      <div class="fig"><div><b>__T_LOCAL_POP__</b><span>people</span></div><div><b>__T_LOCAL_DIST__ km</b><span>average distance</span></div></div>
+    </section>
+    <section class="step" data-step="toronto-regional">
+      <div class="kicker">Zoom in: Toronto</div>
+      <h2>Swap the neighbours for regional offices</h2>
+      <p>Now count only regional and single-tier offices. The neighbouring cities' offices drop out, replaced by the Peel, York and Durham regional offices (in Brampton, Newmarket and Whitby). Toronto stays on the map as a single-tier city, and its zone grows:</p>
+      <div class="fig"><div><b>__T_REG_POP__</b><span>people (was __T_LOCAL_POP__)</span></div><div><b>__T_REG_DIST__ km</b><span>average distance (was __T_LOCAL_DIST__ km)</span></div></div>
+    </section>
+    <section class="step" data-step="toronto-people">
+      <div class="kicker">Zoom in: Toronto</div>
+      <h2>Who lives in each zone?</h2>
+      <p>Shaded by the number of people closest to each office, using 2021 census counts. Toronto's zone is the most populous in this view, and in the local view too. The cell you hover shows how many people it serves.</p>
+    </section>
+
+    <section class="step" data-step="niagara-local">
+      <div class="kicker">Zoom in: Niagara</div>
+      <h2>Niagara: twelve local offices</h2>
+      <p>The Niagara Region is a two-tier region: twelve local municipalities, from Fort Erie to Grimsby, each with its own office. Counting those, the twelve zones cover about __N_LOCAL_POP__ people (zones ignore regional borders, so some people come from neighbouring areas), averaging:</p>
+      <div class="fig"><div><b>__N_LOCAL_DIST__ km</b><span>to their nearest local office</span></div></div>
+    </section>
+    <section class="step" data-step="niagara-regional">
+      <div class="kicker">Zoom in: Niagara</div>
+      <h2>Then there is one</h2>
+      <p>Count only regional and single-tier offices and the twelve local ones vanish. A single regional office in Thorold now covers the whole peninsula, so the average distance is about __N_FACTOR__ times longer:</p>
+      <div class="fig"><div><b>__N_REG_POP__</b><span>people in the zone</span></div><div><b>__N_REG_DIST__ km</b><span>average distance (was __N_LOCAL_DIST__ km)</span></div></div>
+    </section>
+    <section class="step" data-step="niagara-boundaries">
+      <div class="kicker">Zoom in: Niagara</div>
+      <h2>Zones versus borders</h2>
+      <p>The tan and pink shapes are the original municipal boundaries. Offices sit in one town, so the zones don't follow the borders: in places a zone crosses into a neighbouring municipality because that office is simply closer.</p>
+    </section>
+  </div>
+
+  <div class="mapwrap">
+    <iframe id="map" src="map.html?embed=1" title="Interactive map of Ontario's nearest municipal offices" loading="eager"></iframe>
+    <div id="caption"></div>
+  </div>
+</main>
+
+<section class="end">
+  <h2>Explore it yourself</h2>
+  <p>The full map lets you search for your town, postal code or address, find the office nearest you, and shade the zones by tier, people served or distance.</p>
+  <p><a class="btn" href="map.html">Open the full map</a></p>
+  <h3>About the numbers</h3>
+  <ul class="notes">
+    <li>Distances are straight-line, not driving distance, and are weighted by 2021 census population (dissemination-area centres).</li>
+    <li>Only land inside Ontario's lower- and single-tier municipal boundaries is mapped, which covers __COVERAGE__% of the province's population. Unincorporated areas are left blank.</li>
+    <li>Offices come from a hand-collected list; about __LOW_CONF__ of the __TOTAL__ have geocodes with confidence below 0.9 and may be a little off. __CHECKS__ possible data issues are listed in <code>data/office_checks.csv</code>.</li>
+  </ul>
+</section>
+
+<script>
+const STEPS=__STEPS__;
+const frame=document.getElementById('map'),caption=document.getElementById('caption');
+let current=STEPS.province,ready=false;
+function send(){if(ready&&frame.contentWindow)frame.contentWindow.postMessage(Object.assign({type:'state'},current.state),'*');caption.textContent=current.caption;}
+window.addEventListener('message',e=>{if(e.data&&e.data.type==='ready'){ready=true;send();}});
+const steps=[...document.querySelectorAll('.step')];
+function activate(el){steps.forEach(s=>s.classList.toggle('active',s===el));current=STEPS[el.dataset.step];send();}
+activate(steps[0]);
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)activate(e.target);}),{rootMargin:'-45% 0px -45% 0px'});
+steps.forEach(s=>io.observe(s));
+</script></body></html>

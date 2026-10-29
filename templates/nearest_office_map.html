@@ -6,17 +6,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
 <style>
 html,body,#map{height:100%;margin:0;font-family:system-ui,sans-serif}
-.panel{background:#fff;padding:10px 12px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.3);font-size:13px;line-height:1.6;max-width:270px}
+.panel{background:#fff;padding:10px 12px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.3);font-size:13px;line-height:1.6;width:290px;max-height:calc(100vh - 40px);overflow-y:auto;box-sizing:border-box}
+.panel input[type=search]{width:100%;box-sizing:border-box;padding:5px 7px;font-size:13px;border:1px solid #bbb;border-radius:5px}
+.panel button,.panel select{font-size:12px;padding:3px 7px;margin-top:4px}
+#results div{padding:3px 6px;cursor:pointer;border-radius:4px;line-height:1.35}#results div:hover{background:#e8eefc}#results small{color:#666}
+.ramp{height:10px;border-radius:4px;margin:4px 0 0}
+.panel table{border-collapse:collapse;font-size:12px;width:100%}.panel td,.panel th{padding:1px 3px;text-align:right}.panel td:first-child,.panel th:first-child{text-align:left}
+.panel details{margin-top:4px}.panel summary{cursor:pointer;font-weight:600}
 .panel b{display:block;margin-bottom:2px}.panel hr{border:0;border-top:1px solid #ddd;margin:6px 0}
 .panel label{display:block;cursor:pointer}.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;border:1px solid #333}
 .hint{color:#555;font-size:12px}
-#hover{position:absolute;left:10px;bottom:24px;z-index:1000;background:#fff;padding:8px 12px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.3);font-size:13px;min-width:220px;pointer-events:none}
+#hover{position:absolute;left:10px;bottom:24px;z-index:1000;background:#fff;padding:8px 12px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.3);font-size:13px;min-width:220px;max-width:360px;pointer-events:none}
 .pop small{color:#666}
 </style></head><body><div id="map"></div><div id="hover">Move the mouse over the map</div>
 <script>
 const SITES=__SITES__;
 const BOUNDS_DATA=__BOUNDS_DATA__;
 const OUTLINE=__OUTLINE__;
+const STATS=__STATS__;
 const COL={"Upper Tier":"#d62728","Lower Tier":"#1f77b4","Single Tier":"#2ca02c"};
 const VIEWS={
   local:{label:'Local offices',sub:'Lower Tier + Single Tier',tiers:['Lower Tier','Single Tier']},
@@ -54,6 +61,32 @@ let bOpacity=0.6;cvB.style.opacity=bOpacity;
 let view='local', showDots=true, cur=[], delaunay=null, vor=null, cells=[], hi=-1;
 let outlinePath=null, vp=null;
 
+// shading: cells coloured by tier, or by people served / average distance to the office
+let shade='tier', shadeMin=0, shadeMax=1;
+const RAMPS={pop:['#f1f6fb','#9ecae1','#3182bd','#08306b'],dist:['#fff5e6','#fdae61','#e34a33','#7f0000']};
+const hexRgb=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+function rampColor(stops,t){t=Math.max(0,Math.min(1,t));const k=t*(stops.length-1),i=Math.min(Math.floor(k),stops.length-2),f=k-i;
+  const a=hexRgb(stops[i]),b=hexRgb(stops[i+1]);return 'rgb('+a.map((v,j)=>Math.round(v+(b[j]-v)*f)).join(',')+')';}
+const popOf=s=>view==='upper'?s.pr:s.pl, distOf=s=>view==='upper'?s.dr:s.dl;
+const fmt=n=>n.toLocaleString('en-CA');
+function shadeT(s){ // 0..1 position on the colour ramp; population uses a log scale (a few huge cells)
+  if(shade==='pop')return (Math.log(1+popOf(s))-Math.log(1+shadeMin))/(Math.log(1+shadeMax)-Math.log(1+shadeMin)||1);
+  return (distOf(s)-shadeMin)/(shadeMax-shadeMin||1);}
+function cellFill(s){return shade==='tier'?{c:COL[s.t],a:.30}:{c:rampColor(RAMPS[shade],shadeT(s)),a:.72};}
+function setShadeScale(){
+  const el=document.getElementById('shl');if(!el)return;
+  el.style.display=shade==='tier'?'none':'block';if(shade==='tier')return;
+  const v=cur.map(shade==='pop'?popOf:distOf).sort((a,b)=>a-b);
+  shadeMin=v[0];shadeMax=shade==='pop'?v[v.length-1]:v[Math.floor(.95*(v.length-1))]; // distance: cap at 95th percentile
+  const st=RAMPS[shade];document.getElementById('ramp').style.background='linear-gradient(90deg,'+st.join(',')+')';
+  document.getElementById('rampl').innerHTML=shade==='pop'?'<span>'+fmt(shadeMin)+' people</span><span>'+fmt(shadeMax)+'</span>'
+    :'<span>'+shadeMin.toFixed(1)+' km</span><span>'+shadeMax.toFixed(1)+'+ km</span>';
+  document.getElementById('shn').textContent=shade==='pop'?'People living closer to this office than to any other (2021 census). Log scale.'
+    :'Average straight-line distance from the people in each cell to their nearest office.';}
+function serves(s){const p=popOf(s);return p===undefined?'':'Serves about <b>'+fmt(p)+'</b> people &middot; average <b>'+distOf(s).toFixed(1)+' km</b> away';}
+const here=L.layerGroup();
+const msg=t=>{const m=document.getElementById('msg');if(m)m.textContent=t;};
+
 // land bounds in projected space for clipping Voronoi diagram
 let bx0=1e12,by0=1e12,bx1=-1e12,by1=-1e12;
 OUTLINE.forEach(poly=>poly.forEach(r=>r.forEach(([lo,la])=>{const [x,y]=fwd(lo,la);bx0=Math.min(bx0,x);by0=Math.min(by0,y);bx1=Math.max(bx1,x);by1=Math.max(by1,y);})));
@@ -65,8 +98,18 @@ function setView(v){
   const pts=cur.map(s=>fwd(s.lon,s.lat));
   delaunay=d3.Delaunay.from(pts);vor=delaunay.voronoi(BOUNDS);
   cells=cur.map((s,i)=>{const poly=vor.cellPolygon(i);return poly?poly.map(([x,y])=>{const [lo,la]=inv(x,y);return [mx(lo),my(la)];}):null;});
-  hi=-1;draw();refreshDots();
+  hi=-1;here.clearLayers();setShadeScale();draw();refreshDots();renderSummary();
   document.getElementById('hover').textContent='Move the mouse over the map';
+}
+
+function renderSummary(){
+  const body=document.getElementById('sumbody');if(!body)return;
+  const st=STATS[view==='upper'?'upper':'local'],row=(a,b)=>'<tr><td>'+a+'</td><td>'+b+'</td></tr>';
+  body.innerHTML='<div class="hint">'+fmt(st.people)+' people ('+st.coverage+'% of Ontario, municipal land only), straight-line distance to the nearest office, weighted by population.</div>'+
+    '<table>'+row('Average',st.mean+' km')+row('Median',st.median+' km')+row('90th percentile',st.p90+' km')+row('Farthest',st.max+' km')+
+    Object.keys(st.within).map(k=>row('Within '+k+' km',st.within[k]+'%')).join('')+'</table>'+
+    '<details><summary>By region</summary><div class="hint">Region of the serving office, longest average distance first.</div><table><tr><th>Region</th><th>People</th><th>Avg km</th><th>Max km</th></tr>'+
+    st.regions.map(r=>'<tr><td>'+esc(r.r)+'</td><td>'+fmt(r.pop)+'</td><td>'+r.mean+'</td><td>'+r.max+'</td></tr>').join('')+'</table></details>';
 }
 
 function frame(){ // view transform: unit coords -> container px
@@ -97,7 +140,7 @@ function draw(){
   cells.forEach((c,i)=>{
     if(!c)return;
     ctx.beginPath();c.forEach(([x,y],k)=>{const X=x*scale-ox,Y=y*scale-oy;k?ctx.lineTo(X,Y):ctx.moveTo(X,Y);});ctx.closePath();
-    ctx.globalAlpha=.30;ctx.fillStyle=COL[cur[i].t];ctx.fill();
+    const f=cellFill(cur[i]);ctx.globalAlpha=f.a;ctx.fillStyle=f.c;ctx.fill();
     ctx.globalAlpha=1;ctx.strokeStyle='rgba(40,40,40,.55)';ctx.lineWidth=.8;ctx.stroke();
   });
   ctx.restore();
@@ -137,7 +180,7 @@ function drawHi(){
   const {scale,ox,oy}=vp;
   ctxH.save();ctxH.clip(outlinePath,'evenodd');
   ctxH.beginPath();cells[hi].forEach(([x,y],k)=>{const X=x*scale-ox,Y=y*scale-oy;k?ctxH.lineTo(X,Y):ctxH.moveTo(X,Y);});ctxH.closePath();
-  ctxH.globalAlpha=.4;ctxH.fillStyle=COL[cur[hi].t];ctxH.fill();
+  ctxH.globalAlpha=.4;ctxH.fillStyle=shade==='tier'?COL[cur[hi].t]:'#fff';ctxH.fill();
   ctxH.globalAlpha=1;ctxH.strokeStyle='#000';ctxH.lineWidth=2.5;ctxH.stroke();
   ctxH.restore();
 }
@@ -145,6 +188,7 @@ map.on('move zoom resize',draw);
 
 // office dots (only at their real position)
 const dots=L.layerGroup().addTo(map);
+here.addTo(map);
 function refreshDots(){dots.clearLayers();if(!showDots)return;
   cur.forEach(s=>L.circleMarker([s.lat,s.lon],{radius:4,color:'#111',weight:1,fillColor:COL[s.t],fillOpacity:1,interactive:false}).addTo(dots));}
 
@@ -160,13 +204,27 @@ function onLand(lon,lat){const px=mx(lon),py=my(lat);let ins=false;
 function hav(a,b,c,d){const R=6371,r=Math.PI/180,dl=(c-a)*r,dn=(d-b)*r;
   const h=Math.sin(dl/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(h));}
 function nearest(ll){const [x,y]=fwd(ll.lng,ll.lat);return delaunay.find(x,y);}
-function info(s,ll){
-  const d=hav(ll.lat,ll.lng,s.lat,s.lon);
+function info(s,ll,what){ // ll is optional: without it the popup has no distance line
   let h='<div class="pop"><b>'+esc(s.n)+'</b><br>'+esc(s.t)+(s.a?' &middot; '+esc(s.a):'')+'<br>';
   if(s.ad)h+=esc(s.ad)+', '+esc(s.c)+' '+esc(s.pc)+'<br>';
+  if(s.m&&s.m!==s.n)h+='<small>In '+esc(s.m)+'</small><br>';
+  if(s.fl==='outside')h+='<small>&#9888; These coordinates fall outside the municipal boundaries</small><br>';
+  if(s.fl==='tier')h+='<small>&#9888; This office sits in a municipality of a different tier</small><br>';
   if(s.cf!==undefined&&s.cf<0.9)h+='<small>Geocode confidence: '+s.cf+' (location may be approximate)</small><br>';
   if(s.also&&s.also.length)h+='<small>Same coordinates as: '+s.also.map(esc).join('; ')+'</small><br>';
-  return h+'<br>Distance from where you clicked: <b>'+d.toFixed(1)+' km</b></div>';}
+  const sv=serves(s);if(sv)h+='<br>'+sv;
+  if(ll)h+='<br><br>Distance from '+(what||'where you clicked')+': <b>'+hav(ll.lat,ll.lng,s.lat,s.lon).toFixed(1)+' km</b>';
+  return h+'</div>';}
+
+// show the nearest office to a point, with a line to it (used by search and "my location")
+function showNearest(ll,label){
+  if(ll.lat<41.6||ll.lat>56.9||ll.lng<-95.2||ll.lng>-74.3){msg('That location is outside Ontario.');return;}
+  const i=nearest(ll),s=cur[i];here.clearLayers();hi=i;drawHi();
+  L.circleMarker(ll,{radius:7,color:'#000',weight:2,fillColor:'#fff',fillOpacity:1}).addTo(here);
+  L.polyline([ll,[s.lat,s.lon]],{color:'#000',weight:2,dashArray:'6 5'}).addTo(here);
+  map.fitBounds(L.latLngBounds([ll,[s.lat,s.lon]]),{padding:[90,90],maxZoom:13});
+  L.popup().setLatLng(ll).setContent('<div class="pop"><small>'+esc(label)+'</small><br>Nearest office ('+esc(VIEWS[view].label.toLowerCase())+'):</div>'+info(s,ll,'this spot')).openOn(map);
+  msg('');}
 
 map.on('mousemove',e=>{
   const el=document.getElementById('hover');
@@ -174,7 +232,7 @@ map.on('mousemove',e=>{
   const i=nearest(e.latlng);if(i!==hi){hi=i;drawHi();}
   const s=cur[i];let extra='';
   if(view==='bound'){const f=municipalityAt(e.latlng.lng,e.latlng.lat);extra='<br><span style="color:#8a5a14">You are in: <b style="display:inline">'+(f?esc(f.n):'(no municipality)')+'</b></span>';}
-  el.innerHTML='<b>'+esc(s.n)+'</b><br>Nearest office &middot; '+esc(s.t)+' &middot; '+hav(e.latlng.lat,e.latlng.lng,s.lat,s.lon).toFixed(1)+' km away'+extra;
+  el.innerHTML='<b>'+esc(s.n)+'</b><br>Nearest office &middot; '+esc(s.t)+' &middot; '+hav(e.latlng.lat,e.latlng.lng,s.lat,s.lon).toFixed(1)+' km away<br><span style="color:#444">'+serves(s)+'</span>'+extra;
 });
 map.on('click',e=>{
   if(!onLand(e.latlng.lng,e.latlng.lat)){L.popup().setLatLng(e.latlng).setContent('Outside the municipal land boundaries.').openOn(map);return;}
@@ -188,18 +246,71 @@ map.on('click',e=>{
 const ctl=L.control({position:'topright'});
 ctl.onAdd=()=>{const el=L.DomUtil.create('div','panel');L.DomEvent.disableClickPropagation(el);
  const n=t=>SITES.filter(s=>s.t===t).length;
- el.innerHTML='<b>Nearest municipal office</b><div class="hint">Hover to see the nearest office, click for details. Zoom anywhere.</div><hr>'+
+ el.innerHTML='<b>Nearest municipal office</b><div class="hint">Hover to see the nearest office, click for details. Zoom anywhere.</div>'+
+  '<input id="q" type="search" placeholder="Search office, town, postal code or address" autocomplete="off"><div id="results"></div>'+
+  '<button id="loc" type="button">Use my location</button><div class="hint" id="msg"></div><hr>'+
   Object.keys(VIEWS).map((k,i)=>'<label><input type="radio" name="v" value="'+k+'"'+(i?'':' checked')+'> '+VIEWS[k].label+'<div class="hint" style="margin-left:20px">'+VIEWS[k].sub+'</div></label>').join('')+
   '<div id="sl" style="display:none;margin:6px 0 2px 20px"><div class="hint">Municipal boundary opacity: <span id="slv">60%</span></div><input id="slider" type="range" min="0" max="100" value="60" style="width:100%"></div>'+
   '<hr>'+Object.keys(COL).map(k=>'<span style="display:block"><span class="dot" style="background:'+COL[k]+'"></span>'+k+' offices ('+n(k)+')</span>').join('')+
   '<div class="hint" id="bleg" style="display:none;margin-top:4px"><span class="dot" style="background:#f4b860"></span>Lower-tier boundary <span class="dot" style="background:#e58fb0;margin-left:6px"></span>Single-tier boundary</div>'+
-  '<hr><label><input type="checkbox" id="dots" checked> Show office dots</label>';
+  '<hr><b>Shade cells by</b><select id="shade"><option value="tier">Office tier</option><option value="pop">People served</option><option value="dist">Average distance to office</option></select>'+
+  '<div id="shl" style="display:none"><div class="ramp" id="ramp"></div><div class="hint" id="rampl" style="display:flex;justify-content:space-between"></div><div class="hint" id="shn"></div></div>'+
+  '<hr><label><input type="checkbox" id="dots" checked> Show office dots</label>'+
+  '<hr><details id="sum"><summary>Distance summary</summary><div id="sumbody"></div></details>';
  el.querySelectorAll('input[name=v]').forEach(i=>i.onchange=()=>{setView(i.value);el.querySelector('#sl').style.display=el.querySelector('#bleg').style.display=i.value==='bound'?'block':'none';});
  el.querySelector('#slider').oninput=e=>{bOpacity=e.target.value/100;cvB.style.opacity=bOpacity;el.querySelector('#slv').textContent=e.target.value+'%';};
  el.querySelector('#dots').onchange=e=>{showDots=e.target.checked;refreshDots();};
+ el.querySelector('#shade').onchange=e=>{shade=e.target.value;setShadeScale();draw();};
+
+ // search: offices/towns/postal codes are matched locally; anything else can be looked up as an address
+ const norm=t=>String(t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+ const INDEX=SITES.map(s=>({s,k:norm([s.n,s.c,s.m,s.a,s.pc,s.ad].join(' | '))}));
+ const q=el.querySelector('#q'),results=el.querySelector('#results');
+ function goToOffice(s){here.clearLayers();results.innerHTML='';map.setView([s.lat,s.lon],11);
+   L.popup().setLatLng([s.lat,s.lon]).setContent(info(s)).openOn(map);}
+ async function lookup(text){
+   msg('Searching for the address…');
+   try{
+     const r=await fetch('https://nominatim.openstreetmap.org/search?format=jsonv2&limit=1&countrycodes=ca&bounded=1&viewbox=-95.2,56.9,-74.3,41.6&q='+encodeURIComponent(text));
+     if(!r.ok)throw new Error('HTTP '+r.status);
+     const j=await r.json();
+     if(!j.length){msg('No match found in Ontario for “'+text+'”.');return;}
+     results.innerHTML='';showNearest(L.latLng(+j[0].lat,+j[0].lon),j[0].display_name.split(',').slice(0,3).join(','));
+   }catch(err){msg('Address lookup failed ('+err.message+'). The lookup service can block pages opened from a file; the hosted version should work.');}}
+ function renderResults(){
+   const t=norm(q.value).trim();results.innerHTML='';msg('');if(t.length<2)return;
+   INDEX.filter(x=>x.k.includes(t)).slice(0,6).forEach(x=>{
+     const d=document.createElement('div');d.innerHTML='<b style="display:inline">'+esc(x.s.n)+'</b><br><small>'+esc(x.s.t)+' &middot; '+esc(x.s.ad)+', '+esc(x.s.c)+'</small>';
+     d.onclick=()=>goToOffice(x.s);results.appendChild(d);});
+   const a=document.createElement('div');a.innerHTML='Find the address “'+esc(q.value.trim())+'” <small>(sent to OpenStreetMap)</small>';
+   a.onclick=()=>lookup(q.value.trim());results.appendChild(a);}
+ q.oninput=renderResults;
+ q.onkeydown=e=>{if(e.key==='Enter'&&q.value.trim()){const first=results.firstChild;if(first)first.onclick();}};
+ el.querySelector('#loc').onclick=()=>{
+   if(!navigator.geolocation){msg('Your browser cannot share its location.');return;}
+   msg('Finding your location…');
+   navigator.geolocation.getCurrentPosition(p=>showNearest(L.latLng(p.coords.latitude,p.coords.longitude),'Your location'),
+     err=>msg('Could not get your location ('+err.message+').'),{timeout:10000});};
  return el;};
 ctl.addTo(map);
 
 map.fitBounds([[41.7,-95.2],[53.5,-74.3]],{padding:[10,10]});
 setView('local');
+
+// Embedding: with ?embed=1 the control panel is hidden and a parent page (the story)
+// drives the map with postMessage({type:'state', view, shade, center, zoom, highlight}).
+const EMBED=new URLSearchParams(location.search).has('embed');
+function applyState(m){
+  if(m.view&&VIEWS[m.view]){const r=document.querySelector('input[name=v][value='+m.view+']');if(r&&!r.checked)r.click();}
+  if(m.shade){const sel=document.getElementById('shade');if(sel.value!==m.shade){sel.value=m.shade;sel.dispatchEvent(new Event('change'));}}
+  if(m.center)map.setView(m.center,m.zoom||map.getZoom(),{animate:false});
+  here.clearLayers();map.closePopup();
+  if(m.highlight!==undefined){hi=cur.findIndex(s=>s.n===m.highlight);drawHi();}
+}
+if(EMBED){
+  ctl.getContainer().style.display='none';
+  map.scrollWheelZoom.disable();
+  window.addEventListener('message',e=>{if(e.data&&e.data.type==='state')applyState(e.data);});
+  if(parent!==window)parent.postMessage({type:'ready'},'*');
+}
 </script></body></html>
