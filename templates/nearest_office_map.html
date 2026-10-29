@@ -1,0 +1,205 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Ontario Nearest Municipal Office</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
+<style>
+html,body,#map{height:100%;margin:0;font-family:system-ui,sans-serif}
+.panel{background:#fff;padding:10px 12px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.3);font-size:13px;line-height:1.6;max-width:270px}
+.panel b{display:block;margin-bottom:2px}.panel hr{border:0;border-top:1px solid #ddd;margin:6px 0}
+.panel label{display:block;cursor:pointer}.dot{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px;border:1px solid #333}
+.hint{color:#555;font-size:12px}
+#hover{position:absolute;left:10px;bottom:24px;z-index:1000;background:#fff;padding:8px 12px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.3);font-size:13px;min-width:220px;pointer-events:none}
+.pop small{color:#666}
+</style></head><body><div id="map"></div><div id="hover">Move the mouse over the map</div>
+<script>
+const SITES=__SITES__;
+const BOUNDS_DATA=__BOUNDS_DATA__;
+const OUTLINE=__OUTLINE__;
+const COL={"Upper Tier":"#d62728","Lower Tier":"#1f77b4","Single Tier":"#2ca02c"};
+const VIEWS={
+  local:{label:'Local offices',sub:'Lower Tier + Single Tier',tiers:['Lower Tier','Single Tier']},
+  upper:{label:'Regional / single-tier offices',sub:'Upper Tier + Single Tier (e.g. Niagara Region and City of Hamilton)',tiers:['Upper Tier','Single Tier']},
+  bound:{label:'Original municipal boundaries',sub:'Local-office cells with the municipal boundaries on top; slide to fade between them',tiers:['Lower Tier','Single Tier']}
+};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const P=proj4("+proj=lcc +lat_1=44.5 +lat_2=54 +lat_0=49 +lon_0=-85 +datum=NAD83 +units=m +no_defs");
+const fwd=(lon,lat)=>P.forward([lon,lat]), inv=(x,y)=>P.inverse([x,y]);
+
+// web-mercator unit coords (0..1) so drawing is just multiply + subtract
+const mx=lon=>(lon+180)/360, my=lat=>0.5-Math.log(Math.tan(Math.PI/4+lat*Math.PI/360))/(2*Math.PI);
+// outline rings pre-converted with bounding boxes for culling
+const RINGS=[];
+OUTLINE.forEach(poly=>poly.forEach(r=>{
+  const pts=new Float64Array(r.length*2);let x0=9,y0=9,x1=-9,y1=-9;
+  r.forEach(([lo,la],i)=>{const x=mx(lo),y=my(la);pts[2*i]=x;pts[2*i+1]=y;x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);});
+  RINGS.push({pts,x0,y0,x1,y1});}));
+
+const BRINGS=BOUNDS_DATA.map(f=>{const rings=f.r.map(r=>{
+  const pts=new Float64Array(r.length*2);let x0=9,y0=9,x1=-9,y1=-9;
+  r.forEach(([lo,la],i)=>{const x=mx(lo),y=my(la);pts[2*i]=x;pts[2*i+1]=y;x0=Math.min(x0,x);x1=Math.max(x1,x);y0=Math.min(y0,y);y1=Math.max(y1,y);});
+  return {pts,x0,y0,x1,y1};});
+  return {n:f.n,t:f.t,u:f.u,rings,x0:Math.min(...rings.map(r=>r.x0)),x1:Math.max(...rings.map(r=>r.x1)),y0:Math.min(...rings.map(r=>r.y0)),y1:Math.max(...rings.map(r=>r.y1))};});
+const map=L.map('map',{zoomAnimation:false,zoomSnap:0.5,minZoom:4}).setView([46,-81],6);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}',{maxZoom:18,
+ attribution:'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, USGS, NRCAN'}).addTo(map);
+map.createPane('vor').style.zIndex=250;
+function mkCanvas(){const c=document.createElement('canvas');c.style.position='absolute';c.style.pointerEvents='none';map.getPane('vor').appendChild(c);return c;}
+const cv=mkCanvas(), cvB=mkCanvas(), cvH=mkCanvas();
+const ctx=cv.getContext('2d'), ctxB=cvB.getContext('2d'), ctxH=cvH.getContext('2d');
+const BFILL={'Lower Tier':'#f4b860','Single Tier':'#e58fb0'};
+let bOpacity=0.6;cvB.style.opacity=bOpacity;
+
+let view='local', showDots=true, cur=[], delaunay=null, vor=null, cells=[], hi=-1;
+let outlinePath=null, vp=null;
+
+// land bounds in projected space for clipping Voronoi diagram
+let bx0=1e12,by0=1e12,bx1=-1e12,by1=-1e12;
+OUTLINE.forEach(poly=>poly.forEach(r=>r.forEach(([lo,la])=>{const [x,y]=fwd(lo,la);bx0=Math.min(bx0,x);by0=Math.min(by0,y);bx1=Math.max(bx1,x);by1=Math.max(by1,y);})));
+const BOUNDS=[bx0-50000,by0-50000,bx1+50000,by1+50000];
+
+function setView(v){
+  view=v;const tiers=VIEWS[v].tiers;
+  cur=SITES.filter(s=>tiers.includes(s.t));
+  const pts=cur.map(s=>fwd(s.lon,s.lat));
+  delaunay=d3.Delaunay.from(pts);vor=delaunay.voronoi(BOUNDS);
+  cells=cur.map((s,i)=>{const poly=vor.cellPolygon(i);return poly?poly.map(([x,y])=>{const [lo,la]=inv(x,y);return [mx(lo),my(la)];}):null;});
+  hi=-1;draw();refreshDots();
+  document.getElementById('hover').textContent='Move the mouse over the map';
+}
+
+function frame(){ // view transform: unit coords -> container px
+  const z=map.getZoom(),scale=256*Math.pow(2,z),sz=map.getSize();
+  const tl=map.containerPointToLatLng([0,0]);
+  return {scale,ox:mx(tl.lng)*scale,oy:my(tl.lat)*scale,w:sz.x,h:sz.y,
+    ux0:mx(tl.lng),uy0:my(tl.lat)};
+}
+function draw(){
+  vp=frame();const {scale,ox,oy,w,h}=vp;
+  for(const c of [cv,cvB,cvH]){c.width=w;c.height=h;L.DomUtil.setPosition(c,map.containerPointToLayerPoint([0,0]));}
+  // outline path with culling (rings entirely off-screen are skipped)
+  const m=40/scale, ux1=(ox+w)/scale+m, uy1=(oy+h)/scale+m, ux0=ox/scale-m, uy0=oy/scale-m;
+  outlinePath=new Path2D();
+  for(const r of RINGS){
+    if(r.x1<ux0||r.x0>ux1||r.y1<uy0||r.y0>uy1)continue;
+    const p=r.pts;
+    // drop sub-pixel points while zoomed out
+    let lx=-1e9,ly=-1e9,first=true;
+    for(let i=0;i<p.length;i+=2){
+      const x=p[i]*scale-ox,y=p[i+1]*scale-oy;
+      if(!first&&Math.abs(x-lx)<0.4&&Math.abs(y-ly)<0.4&&i<p.length-2)continue;
+      first?outlinePath.moveTo(x,y):outlinePath.lineTo(x,y);first=false;lx=x;ly=y;}
+    outlinePath.closePath();
+  }
+  ctx.save();ctx.clip(outlinePath,'evenodd');
+  ctx.lineJoin='round';
+  cells.forEach((c,i)=>{
+    if(!c)return;
+    ctx.beginPath();c.forEach(([x,y],k)=>{const X=x*scale-ox,Y=y*scale-oy;k?ctx.lineTo(X,Y):ctx.moveTo(X,Y);});ctx.closePath();
+    ctx.globalAlpha=.30;ctx.fillStyle=COL[cur[i].t];ctx.fill();
+    ctx.globalAlpha=1;ctx.strokeStyle='rgba(40,40,40,.55)';ctx.lineWidth=.8;ctx.stroke();
+  });
+  ctx.restore();
+  ctx.strokeStyle='#222';ctx.lineWidth=1.2;ctx.stroke(outlinePath);
+  drawB();drawHi();
+}
+function drawB(){
+  ctxB.clearRect(0,0,vp.w,vp.h);
+  cvB.style.display=(view==='bound')?'':'none';
+  if(view!=='bound')return;
+  const {scale,ox,oy,w,h}=vp,m=10/scale,ux0=ox/scale-m,ux1=(ox+w)/scale+m,uy0=oy/scale-m,uy1=(oy+h)/scale+m;
+  ctxB.lineJoin='round';ctxB.strokeStyle='#4a2f12';ctxB.lineWidth=1.1;
+  for(const f of BRINGS){
+    if(f.x1<ux0||f.x0>ux1||f.y1<uy0||f.y0>uy1)continue;
+    const path=new Path2D();
+    for(const r of f.rings){
+      if(r.x1<ux0||r.x0>ux1||r.y1<uy0||r.y0>uy1)continue;
+      const p=r.pts;let lx=-1e9,ly=-1e9,first=true;
+      for(let i=0;i<p.length;i+=2){const x=p[i]*scale-ox,y=p[i+1]*scale-oy;
+        if(!first&&Math.abs(x-lx)<0.4&&Math.abs(y-ly)<0.4&&i<p.length-2)continue;
+        first?path.moveTo(x,y):path.lineTo(x,y);first=false;lx=x;ly=y;}
+      path.closePath();}
+    ctxB.fillStyle=BFILL[f.t];ctxB.fill(path,'evenodd');ctxB.stroke(path);
+  }
+}
+function municipalityAt(lon,lat){const px=mx(lon),py=my(lat);
+  for(const f of BRINGS){
+    if(px<f.x0||px>f.x1||py<f.y0||py>f.y1)continue;let ins=false;
+    for(const r of f.rings){if(px<r.x0||px>r.x1||py<r.y0||py>r.y1)continue;const p=r.pts;
+      for(let i=0,j=p.length-2;i<p.length;j=i,i+=2){const xi=p[i],yi=p[i+1],xj=p[j],yj=p[j+1];
+        if((yi>py)!==(yj>py)&&px<(xj-xi)*(py-yi)/(yj-yi)+xi)ins=!ins;}}
+    if(ins)return f;}
+  return null;}
+function drawHi(){
+  if(!vp)return;ctxH.clearRect(0,0,vp.w,vp.h);
+  if(hi<0||!cells[hi])return;
+  const {scale,ox,oy}=vp;
+  ctxH.save();ctxH.clip(outlinePath,'evenodd');
+  ctxH.beginPath();cells[hi].forEach(([x,y],k)=>{const X=x*scale-ox,Y=y*scale-oy;k?ctxH.lineTo(X,Y):ctxH.moveTo(X,Y);});ctxH.closePath();
+  ctxH.globalAlpha=.4;ctxH.fillStyle=COL[cur[hi].t];ctxH.fill();
+  ctxH.globalAlpha=1;ctxH.strokeStyle='#000';ctxH.lineWidth=2.5;ctxH.stroke();
+  ctxH.restore();
+}
+map.on('move zoom resize',draw);
+
+// office dots (only at their real position)
+const dots=L.layerGroup().addTo(map);
+function refreshDots(){dots.clearLayers();if(!showDots)return;
+  cur.forEach(s=>L.circleMarker([s.lat,s.lon],{radius:4,color:'#111',weight:1,fillColor:COL[s.t],fillOpacity:1,interactive:false}).addTo(dots));}
+
+// land hit-test (point in outline), bbox-culled
+function onLand(lon,lat){const px=mx(lon),py=my(lat);let ins=false;
+  for(const r of RINGS){
+    if(px<r.x0||px>r.x1||py<r.y0||py>r.y1)continue;
+    const p=r.pts;
+    for(let i=0,j=p.length-2;i<p.length;j=i,i+=2){
+      const xi=p[i],yi=p[i+1],xj=p[j],yj=p[j+1];
+      if((yi>py)!==(yj>py)&&px<(xj-xi)*(py-yi)/(yj-yi)+xi)ins=!ins;}}
+  return ins;}
+function hav(a,b,c,d){const R=6371,r=Math.PI/180,dl=(c-a)*r,dn=(d-b)*r;
+  const h=Math.sin(dl/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(h));}
+function nearest(ll){const [x,y]=fwd(ll.lng,ll.lat);return delaunay.find(x,y);}
+function info(s,ll){
+  const d=hav(ll.lat,ll.lng,s.lat,s.lon);
+  let h='<div class="pop"><b>'+esc(s.n)+'</b><br>'+esc(s.t)+(s.a?' &middot; '+esc(s.a):'')+'<br>';
+  if(s.ad)h+=esc(s.ad)+', '+esc(s.c)+' '+esc(s.pc)+'<br>';
+  if(s.cf!==undefined&&s.cf<0.9)h+='<small>Geocode confidence: '+s.cf+' (location may be approximate)</small><br>';
+  if(s.also&&s.also.length)h+='<small>Same coordinates as: '+s.also.map(esc).join('; ')+'</small><br>';
+  return h+'<br>Distance from where you clicked: <b>'+d.toFixed(1)+' km</b></div>';}
+
+map.on('mousemove',e=>{
+  const el=document.getElementById('hover');
+  if(!onLand(e.latlng.lng,e.latlng.lat)){if(hi!==-1){hi=-1;drawHi();}el.textContent='Outside municipal land boundaries';return;}
+  const i=nearest(e.latlng);if(i!==hi){hi=i;drawHi();}
+  const s=cur[i];let extra='';
+  if(view==='bound'){const f=municipalityAt(e.latlng.lng,e.latlng.lat);extra='<br><span style="color:#8a5a14">You are in: <b style="display:inline">'+(f?esc(f.n):'(no municipality)')+'</b></span>';}
+  el.innerHTML='<b>'+esc(s.n)+'</b><br>Nearest office &middot; '+esc(s.t)+' &middot; '+hav(e.latlng.lat,e.latlng.lng,s.lat,s.lon).toFixed(1)+' km away'+extra;
+});
+map.on('click',e=>{
+  if(!onLand(e.latlng.lng,e.latlng.lat)){L.popup().setLatLng(e.latlng).setContent('Outside the municipal land boundaries.').openOn(map);return;}
+  const i=nearest(e.latlng);hi=i;drawHi();
+  let html=info(cur[i],e.latlng);
+  if(view==='bound'){const f=municipalityAt(e.latlng.lng,e.latlng.lat);
+    if(f)html='<div class="pop" style="border-bottom:1px solid #ddd;margin-bottom:6px;padding-bottom:4px"><small>Municipality at this spot</small><br><b>'+esc(f.n)+'</b>'+esc(f.t)+(f.u?' &middot; '+esc(f.u):'')+'</div>'+html;}
+  L.popup().setLatLng(e.latlng).setContent(html).openOn(map);
+});
+
+const ctl=L.control({position:'topright'});
+ctl.onAdd=()=>{const el=L.DomUtil.create('div','panel');L.DomEvent.disableClickPropagation(el);
+ const n=t=>SITES.filter(s=>s.t===t).length;
+ el.innerHTML='<b>Nearest municipal office</b><div class="hint">Hover to see the nearest office, click for details. Zoom anywhere.</div><hr>'+
+  Object.keys(VIEWS).map((k,i)=>'<label><input type="radio" name="v" value="'+k+'"'+(i?'':' checked')+'> '+VIEWS[k].label+'<div class="hint" style="margin-left:20px">'+VIEWS[k].sub+'</div></label>').join('')+
+  '<div id="sl" style="display:none;margin:6px 0 2px 20px"><div class="hint">Municipal boundary opacity: <span id="slv">60%</span></div><input id="slider" type="range" min="0" max="100" value="60" style="width:100%"></div>'+
+  '<hr>'+Object.keys(COL).map(k=>'<span style="display:block"><span class="dot" style="background:'+COL[k]+'"></span>'+k+' offices ('+n(k)+')</span>').join('')+
+  '<div class="hint" id="bleg" style="display:none;margin-top:4px"><span class="dot" style="background:#f4b860"></span>Lower-tier boundary <span class="dot" style="background:#e58fb0;margin-left:6px"></span>Single-tier boundary</div>'+
+  '<hr><label><input type="checkbox" id="dots" checked> Show office dots</label>';
+ el.querySelectorAll('input[name=v]').forEach(i=>i.onchange=()=>{setView(i.value);el.querySelector('#sl').style.display=el.querySelector('#bleg').style.display=i.value==='bound'?'block':'none';});
+ el.querySelector('#slider').oninput=e=>{bOpacity=e.target.value/100;cvB.style.opacity=bOpacity;el.querySelector('#slv').textContent=e.target.value+'%';};
+ el.querySelector('#dots').onchange=e=>{showDots=e.target.checked;refreshDots();};
+ return el;};
+ctl.addTo(map);
+
+map.fitBounds([[41.7,-95.2],[53.5,-74.3]],{padding:[10,10]});
+setView('local');
+</script></body></html>

@@ -1,0 +1,445 @@
+tier,region,address,city,postal_code,latitude,longitude,confidence
+Lower Tier,Lennox and Addington,72 Edward Street,Flinton,K0H 1P0,44.6877041,-77.2098731,1.0
+Lower Tier,Middlesex,"2340 Egremont Drive, RR 5",Strathroy,N7G 3H6,43.0046853,-81.7080603,0.675
+Lower Tier,Simcoe,7855 30th Sideroad,Alliston,L9R 1V1,44.1539369,-79.8692321,0.25
+Lower Tier,Renfrew,477 Stone Road,Renfrew,K7V 3Z5,45.4571871173735,-76.7781397342022,1.0
+Lower Tier,Durham,65 Harwood Avenue South,Ajax,L1S 2H9,43.8501905,-79.0206037,1.0
+Single Tier,Rainy River,"3 Highway 611 South, RR 1 - B2",Fort Frances,P9A 3M2,48.5597154,-93.5163424,0.45
+Lower Tier,Prescott and Russell,"205 Old Highway 17, PO Box 350",Plantagenet,K0B 1L0,45.5404138071429,-74.99005355,1.0
+Lower Tier,Haliburton,1123 North Shore Road,Algonquin Highlands,K0M 1S0,45.0756337,-78.7123808,1.0
+Lower Tier,Northumberland,"10836 County Road 2, PO Box 70",Grafton,K0K 2G0,43.9921523,-78.0261298,0.95
+Lower Tier,Dufferin,374028 6th Line,Amaranth,L9W 0M6,43.949242,-80.224546,1.0
+Lower Tier,Essex,271 Sandwich Street South,Amherstburg,N9V 2A5,42.1016251083333,-83.1086006416667,1.0
+Single Tier,Parry Sound,"56 Ontario Street, PO Box 533",Burk's Falls,P0A 1C0,45.6116818,-79.4030025,1.0
+Single Tier,Timiskaming,"35 10th Street, PO Box 546",Earlton,P0J 1E0,47.7110022,-79.8332037,0.45
+Lower Tier,Renfrew,105 Elgin Street West,Arnprior,K7S 0A8,45.434797,-76.357228,1.0
+Lower Tier,Bruce,"1925 Bruce Road 10, PO Box 70",Chesley,N0G 1L0,44.3035105,-81.0907622,0.75
+Lower Tier,Huron,"82133 Council Line, RR 5",Goderich,N7A 3Y2,43.777606,-81.650232,0.9
+Lower Tier,Peterborough,2357 County Road 45,Norwood,K0L 2V0,44.381651,-77.978383,1.0
+Single Tier,Manitoulin,"156 Arthur Street, PO Box 238",Manitowaning,P0P 1N0,45.7448391,-81.8052392,0.5
+Lower Tier,Leeds and Grenville,"1 Main Street West, PO Box 189",Athens,K0E 1B0,44.6256826,-75.9523422,1.0
+Single Tier,Rainy River,"120 Marks Street, Box 1330",Atikokan,P0T 1C0,48.7599835,-91.6244829,0.5
+Lower Tier,Leeds and Grenville,"3560 County Road 26, RR 2",Prescott,K0E 1T0,44.7383267,-75.5514187,0.5
+Lower Tier,York,"100 John West Way, Box 1000",Aurora,L4G 6J1,44.0050022,-79.4513626,1.0
+Lower Tier,Elgin,46 Talbot Street West,Aylmer,N5H 1J7,42.77296,-80.984185,1.0
+Single Tier,Sudbury,"11 Spooner Street, PO Box 7095",McKerrow,P0P 1M0,46.2865214,-81.7553371,1.0
+Lower Tier,Hastings,"8 Hastings Heritage Way, PO Box 780",Bancroft,K0L 1C0,45.0593542,-77.8590749,1.0
+Single Tier,Simcoe,70 Collier Street,Barrie,L4M 4T5,44.3905785,-79.6856697,1.0
+Lower Tier,Elgin,"56169 Heritage Line, PO Box 160",Straffordville,N0J 1Y0,42.7490057,-80.7819484,0.75
+Lower Tier,Lanark,2022 Beckwith Park Lane,Carleton Place,K7C 0V9,45.1403366,-76.1465672,0.25
+Single Tier,Hastings,169 Front Street,Belleville,K8N 2Y8,44.162597,-77.383474,1.0
+Single Tier,Manitoulin,"15 Old Mill Road, PO Box 1092",Kagawong,P0P 1J0,45.9086756,-82.2585544,1.0
+Single Tier,Cochrane,"421 Fifth Avenue, PO Box 601",Matheson,P0K 1N0,48.535687,-80.4654513,0.75
+Lower Tier,Oxford,47 Wilmot Street South,Drumbo,N0J 1G0,43.2347655928571,-80.5514911928571,1.0
+Single Tier,Algoma,"11 Hudson Street, PO Box 640",Blind River,P0R 1B0,46.1877918,-82.9551752,1.0
+Lower Tier,Huron,14 Mill Avenue,Zurich,N0M 2T0,43.42222,-81.62542,1.0
+Single Tier,Nipissing,365 Highway 531,Bonfield,P0H 1E0,46.239281,-79.151273,0.5
+Lower Tier,Renfrew,"49 Bonnechere Street East, PO Box 100",Eganville,K0J 1T0,45.5391932,-77.0946997,1.0
+Lower Tier,Muskoka,1000 Taylor Court,Bracebridge,P1L 1R6,45.055743,-79.28879,1.0
+Lower Tier,Simcoe,"100 Dissette Street, Units 7 and 8",Bradford,L3Z 2A7,44.120583,-79.558619,1.0
+Lower Tier,Peel,2 Wellington Street West,Brampton,L6Y 4R2,43.6849825,-79.7595042,1.0
+Single Tier,Brant,"26 Park Avenue, PO Box 160",Paris,N3L 2M2,43.1934825,-80.3840946,1.0
+Single Tier,Brant,58 Dalhousie Street,Brantford,N3T 2J2,43.1394304,-80.265637,1.0
+Single Tier,Timiskaming,"051476 Brethour Road, PO Box 537",Belle Vallee,P0J 1A0,47.6894363,-79.5672189,0.5
+Lower Tier,Northumberland,"35 Alice Street, PO Box 189",Brighton,K0K 1H0,44.0421069,-77.7353271,1.0
+Lower Tier,Durham,"1 Cameron Street East, PO Box 10",Cannington,L0E 1E0,44.3501387,-79.0383705,1.0
+Lower Tier,Bruce,"100 Scott Street, PO Box 68",Walkerton,N0G 2V0,44.1326122,-81.1516836,1.0
+Single Tier,Leeds and Grenville,"1 King Street West, PO Box 5000",Brockville,K6V 7A5,44.590341,-75.682807,1.0
+Lower Tier,Lambton,"3236 River Street, PO Box 28",Alvinston,N0N 1A0,42.8201266,-81.862099,1.0
+Upper Tier,Bruce,"30 Park Street, PO Box 70",Walkerton,N0G 2V0,44.1203655,-81.1514809,1.0
+Single Tier,Algoma,"9126 Highway 17 East, PO Box 220",Bruce Mines,P0R 1C0,46.3003956,-83.7947784,0.9
+Lower Tier,Renfrew,"42 Burnt Bridge Road, PO Box 40",Palmer Rapids,K0J 2E0,45.3000512,-77.5189337,0.5
+Single Tier,Parry Sound,"172 Ontario Street, PO Box 160",Burk's Falls,P0A 1C0,45.6188588,-79.4070048,1.0
+Lower Tier,Halton,"426 Brant Street, PO Box 5013",Burlington,L7R 3Z6,43.3257582,-79.798619,1.0
+Single Tier,Manitoulin,8 Bailey Line Road,Evansville,P0P 1E0,45.7838776,-82.5686353,1.0
+Lower Tier,Peel,6311 Old Church Road,Caledon,L7C 1J6,43.8765585,-79.8572377,1.0
+Single Tier,Parry Sound,"280 Main Street North, PO Box 100",Callander,P0H 1H0,46.2248943,-79.3660323,1.0
+Single Tier,Nipissing,1355 Peddlers Drive,Mattawa,P0H 1V0,46.249997,-78.887705,1.0
+Lower Tier,Waterloo,50 Dickson Street,Cambridge,N1R 5W8,43.360332,-80.312232,1.0
+Lower Tier,Lanark,175 Bridge Street,Carleton Place,K7C 2V8,45.14052,-76.1465909,1.0
+Single Tier,Parry Sound,2 West Carling Bay Road,Nobel,P0G 1G0,45.4121932,-80.0857508,0.25
+Lower Tier,Hastings,3987 Boulter Road,Boulter,K0L 1G0,45.212796,-77.637041,1.0
+Single Tier,Timiskaming,25 Casey Concession 6,New Liskeard,P0J 1P0,47.508731,-79.6789029,0.25
+Lower Tier,Prescott and Russell,"1 Industriel Street, Unit 200",Casselman,K0A 1M0,45.306628,-75.080191,1.0
+Lower Tier,Peterborough,988 County Road 10,Millbrook,L0A 1G0,44.1646423204301,-78.4533899225806,1.0
+Lower Tier,Elgin,450 Sunset Drive,St. Thomas,N5R 5V1,42.7394151,-81.1923596,1.0
+Lower Tier,Frontenac,"14216 Road 38, PO Box 89",Sharbot Lake,K0H 2P0,44.7674489,-76.686519,0.75
+Lower Tier,Huron,"23 Albert Street, PO Box 400",Clinton,N0M 1L0,43.6176337,-81.5394218,1.0
+Single Tier,Manitoulin,"6020 Highway 542, PO Box 420",Mindemoya,P0P 1S0,45.7326113,-82.1607207,1.0
+Lower Tier,Hastings,7 Furnace Street,Madoc,K0K 2K0,44.5008117384615,-77.4716870923077,1.0
+Lower Tier,Wellington,1 MacDonald Square,Elora,N0B 1S0,43.6830396,-80.4312442,1.0
+Single Tier,Timiskaming,467501 Chamberlain Road 5,Englehart,P0J 1H0,47.8255744,-79.8733624,0.25
+Lower Tier,Prescott and Russell,948 Pleasant Corner Road East,Vankleek Hill,K0B 1R0,45.549679,-74.630539,1.0
+Single Tier,Sudbury,"20 Pine Street West, PO Box 129",Chapleau,P0M 1K0,47.8442851,-83.4044857,1.0
+Single Tier,Rainy River,54 Barwick Road,Barwick,P0W 1A0,48.6575518,-93.9847484,0.5
+Single Tier,Timiskaming,287237 Sprucegrove Road,Englehart,P0J 1H0,47.8255744,-79.8733624,0.25
+Single Tier,Chatham-Kent,"315 King Street West, PO Box 640",Chatham,N7M 5K8,42.4044504646341,-82.1909909693686,1.0
+Lower Tier,Grey,"316837 Highway 6, RR 1",Chatsworth,N0H 1G0,44.4419741,-80.8977789,1.0
+Single Tier,Nipissing,2847 Chiswick Line,Powassan,P0H 1Z0,46.115025,-79.179001,1.0
+Lower Tier,Prescott and Russell,1560 Laurier Street,Rockland,K4K 1P7,45.5511314,-75.289142,1.0
+Lower Tier,Durham,40 Temperance Street,Bowmanville,L1C 3A6,43.9131442,-78.6893255,1.0
+Lower Tier,Simcoe,217 Gideon Street,Stayner,L0M 1S0,44.4190461230769,-80.0882220769231,1.0
+Single Tier,Timiskaming,"18 Silver Street, PO Box 70",Cobalt,P0J 1C0,47.3953394,-79.6857416,0.5
+Lower Tier,Northumberland,55 King Street West,Cobourg,K9A 2M2,43.9593767,-78.1677767,1.0
+Single Tier,Cochrane,"171 Fourth Avenue, PO Box 490",Cochrane,P0L 1C0,49.064034,-81.028083,0.5
+Single Tier,Manitoulin,"6 Bay Street, PO Box 58",Thessalon,P0R 1L0,46.2562399,-83.5568701,1.0
+Single Tier,Timiskaming,937907 Marsh Bay Road,Coleman,P0J 1C0,47.3667495,-79.7593622,0.5
+Lower Tier,Simcoe,"97 Hurontario Street, PO Box 157",Collingwood,L9Y 3Z5,44.5002824,-80.2163727,1.0
+Single Tier,Thunder Bay,19 Holland Road West,Kakabeka Falls,P0T 1W0,48.4015108,-89.6137518,0.25
+Single Tier,"Stormont, Dundas and Glengarry",360 Pitt Street,Cornwall,K6J 3P9,45.021108,-74.730469,1.0
+Lower Tier,Northumberland,"1 Toronto Street, PO Box 357",Colborne,K0K 1S0,44.0049918,-77.8886013,1.0
+Lower Tier,Lambton,"4591 Lambton Line, RR 4",Dresden,N0P 1M0,42.6011239,-82.1822707,0.05
+Single Tier,Rainy River,"211 Fourth Street, PO Box 10",Rainy River,P0W 1L0,48.7185633,-94.5691612,0.5
+Lower Tier,Renfrew,"100 Deep River Road, PO Box 400",Deep River,K0J 1P0,46.100878,-77.487555,1.0
+Lower Tier,Hastings,"331 Main Street, PO Box 310",Deseronto,K0K 1X0,44.1950551,-77.0486575,1.0
+Single Tier,Thunder Bay,170 Dorion Loop Road,Dorion,P0T 1K0,48.780938,-88.5616343,0.5
+Lower Tier,Peterborough,"894 South Street, PO Box 92",Warsaw,K0L 3A0,44.4288644184059,-78.136957863366,1.0
+Lower Tier,Lanark,310 Port Elmsley Road,Perth,K7H 3C7,44.8889121,-76.1333959,0.75
+Single Tier,Kenora,30 Van Horne Avenue,Dryden,P8N 2A7,49.7840533,-92.836544,1.0
+Single Tier,Algoma,"23 Pine Street, PO Box 367",Dubreuilville,P0S 1B0,48.3508982,-84.5477992,0.9
+Upper Tier,Dufferin,55 Zina Street,Shelburne,L9V 3R7,44.0768683,-80.2004468,1.0
+Upper Tier,Durham,605 Rossland Road East,Whitby,L1N 6A3,43.8984743,-78.9402703,1.0
+Lower Tier,Elgin,199 Currie Road,Dutton,N0L 1J0,42.663955,-81.502552,1.0
+Lower Tier,Haliburton,"135 Maple Avenue, PO Box 389",Haliburton,K0M 1S0,45.045245,-78.506504,1.0
+Single Tier,Kenora,"2 Willow Crescent, PO Box 309",Ear Falls,P0V 1T0,50.6422603,-93.2416012,1.0
+Single Tier,Nipissing,25 Taillefer Road,Corbeil,P0H 1K0,46.265475,-79.2772948,0.5
+Lower Tier,Dufferin,"065371 Dufferin County Road 3, Unit 2",East Garafraxa,L9W 7J8,43.9046,-80.1492,1.0
+Lower Tier,York,19000 Leslie Street,Sharon,L0G 1V0,44.101816,-79.441213,1.0
+Lower Tier,Prescott and Russell,"5151 County Road 14, PO Box 340",St-Eugene,K0B 1P0,45.4983575,-74.4746015,1.0
+Lower Tier,Oxford,"89 Loveys Street, PO Box 100",Hickson,N0J 1L0,43.2379453032258,-80.8064140709677,0.9
+Lower Tier,Leeds and Grenville,"18 Centre Street, PO Box 129",Spencerville,K0E 1X0,44.8423354,-75.5480285,1.0
+Upper Tier,Elgin,450 Sunset Drive,St. Thomas,N5R 5V1,42.7394151,-81.1923596,1.0
+Lower Tier,Leeds and Grenville,"6544 New Dublin Road, RR 2",Addison,K0E 1A0,44.667496,-75.801479,1.0
+Single Tier,Algoma,45 Hillside Drive North,Elliot Lake,P5A 1X5,46.3860522,-82.6509153,1.0
+Single Tier,Rainy River,"39 Roy Street, PO Box 520",Emo,P0W 1E0,48.6310271,-93.8358594,0.5
+Single Tier,Timiskaming,"61 Fifth Avenue, PO Box 399",Englehart,P0J 1H0,47.824603,-79.8798596,0.5
+Lower Tier,Lambton,"4465 Rokeby Line, RR 1",Petrolia,N0N 1R0,42.8569781,-82.1269075,0.75
+Lower Tier,Wellington,5684 Trafalgar Road,Hillsburgh,N0B 1Z0,43.7852329,-80.1368803,0.5
+Single Tier,Sudbury,"100 Tudhope Street, Suite 2",Espanola,P5E 1S6,46.2659591,-81.7703727,1.0
+Lower Tier,Simcoe,5786 County Road 21,Utopia,L0M 1T0,44.2523592,-79.8083056,1.0
+Upper Tier,Essex,"360 Fairview Avenue West, Suite 202",Essex,N8M 1Y6,42.1701011,-82.8144702,0.5
+Lower Tier,Essex,33 Talbot Street South,Essex,N8M 1A8,42.1728674,-82.8189388,1.0
+Single Tier,Timiskaming,414269 Bryan’s Road,Englehart,P0J 1H0,47.8255744,-79.8733624,0.25
+Lower Tier,Hastings,29860 Highway 28 South,South Bancroft,K0L 1C0,45.065049,-77.7889657,0.5
+Single Tier,Cochrane,"20-A Doyon Street, PO Box 40",Fauquier,P0L 1G0,49.3087556,-82.037245,0.9
+Lower Tier,Niagara,1 Municipal Centre Drive,Fort Erie,L2A 2S6,42.903882,-78.9743985,1.0
+Single Tier,Rainy River,320 Portage Avenue,Fort Frances,P9A 3P9,48.6085261,-93.3949834,1.0
+Single Tier,Sudbury,"44 St. Christophe Street, Suite 1",Noelville,P0M 2N0,46.1359908,-80.4276942,0.5
+Lower Tier,Leeds and Grenville,"1514 County Road 2, PO Box 130",Mallorytown,K0E 1R0,44.4796627569445,-75.8767440106184,1.0
+Upper Tier,Frontenac,2069 Battersea Road,Glenburnie,K0H 1S0,44.313,-76.4660308,1.0
+Lower Tier,Frontenac,"1191 Road 96, PO Box 130",Wolfe Island,K0H 2Y0,44.1981146,-76.4225525,0.45
+Single Tier,Leeds and Grenville,30 King Street East,Gananoque,K7G 1E9,44.3289122,-76.1648735,1.0
+Single Tier,Timiskaming,1-22 Station Road North,Gauthier,P0K 1B0,48.1335374,-79.822197,1.0
+Lower Tier,Muskoka,99 Lone Pine Road,Port Severn,L0K 1S0,44.8088122,-79.7356953,0.75
+Lower Tier,Grey,177964 Grey Road 18,Owen Sound,N4K 5N5,44.5555194,-80.9910495,1.0
+Lower Tier,York,"26557 Civic Centre Road, RR 2",Keswick,L4P 3G1,44.2950272,-79.437904,0.9
+Single Tier,Thunder Bay,1092 Highway 595,Kakabeka Falls,P0T 1W0,48.3908743,-89.7008136,0.5
+Lower Tier,Huron,57 West Street,Goderich,N7A 2K5,43.74292465,-81.7138148,1.0
+Single Tier,Manitoulin,"29 Noble Sideroad, PO Box 680",Gore Bay,P0P 1H0,45.9167876,-82.4640868,0.25
+Single Tier,Manitoulin,"15 Water Street, PO Box 590",Gore Bay,P0P 1H0,45.9166974,-82.4635082,1.0
+Lower Tier,Dufferin,5 Main Street North,Grand Valley,L9W 5S6,43.899246,-80.315396,1.0
+Lower Tier,Muskoka,3-5 Pineridge Gate,Gravenhurst,P1P 1Z3,44.9098996,-79.3614305,0.5
+Lower Tier,Renfrew,"19 Parnell Street, PO Box 180",Calabogie,K0J 1H0,45.2992448,-76.7226314333333,1.0
+Lower Tier,Lennox and Addington,"124 John Street, PO Box 97",Napanee,K7R 3Y5,44.2572847,-76.956028,0.9
+Single Tier,Sudbury,200 Brady Street,Sudbury,P3A 5P3,46.489892,-80.989858,1.0
+Single Tier,Thunder Bay,"1800 Main Street, PO Box 70",Geraldton,P0T 1M0,49.7037815,-86.9546033,1.0
+Upper Tier,Grey,595 9th Avenue East,Owen Sound,N4K 3E3,44.561333,-80.925259,1.0
+Lower Tier,Grey,"206 Toronto Street South, Unit 1, PO Box 409",Markdale,N0C 1H0,44.314943,-80.6430789,1.0
+Lower Tier,Niagara,160 Livingston Avenue,Grimsby,L3M 0J5,43.199174,-79.582939,1.0
+Single Tier,Wellington,1 Carden Street,Guelph,N1H 3A1,43.543218,-80.2485149,1.0
+Lower Tier,Wellington,"8348 Wellington Road 124, PO Box 700",Rockwood,N0B 2K0,43.6440765,-80.1916813,1.0
+Single Tier,Haldimand,53 Thorburn Street South,Cayuga,N0A 1E0,42.9471507,-79.8521747,1.0
+Upper Tier,Haliburton,"11 Newcastle Street, PO Box 399",Minden,K0M 2K0,44.9252159,-78.7223876,1.0
+Upper Tier,Halton,1151 Bronte Road,Oakville,L6M 3L1,43.415228,-79.747105,1.0
+Lower Tier,Halton,1 Halton Hills Drive,Halton Hills,L7G 5G2,43.6393273,-79.9308258,1.0
+Single Tier,Hamilton,71 Main Street West,Hamilton,L8P 4Y5,43.2563315,-79.8742422,1.0
+Lower Tier,Northumberland,"8285 Majestic Hills Drive, PO Box 1060",Cobourg,K9A 4W5,44.0241876,-78.2144456,0.9
+Lower Tier,Grey,341 10th Street,Hanover,N4N 1P5,44.15221018,-81.02594971,1.0
+Single Tier,Timiskaming,"903303 Hanbury Road, RR 3",New Liskeard,P0J 1P0,47.508731,-79.6789029,0.25
+Single Tier,Timiskaming,823015 Sawmill Road,New Liskeard,P0J 1P0,47.508731,-79.6789029,0.25
+Upper Tier,Hastings,"235 Pinnacle Street, PO Box 4400",Belleville,K8N 3A9,44.1657149,-77.3828741,1.0
+Lower Tier,Hastings,"33011 Highway 62 North, PO Box 130",Maynooth,K0L 2S0,45.2316589,-77.9372793,1.0
+Lower Tier,Peterborough,"1 Ottawa Street East, PO Box 10",Havelock,K0L 1Z0,44.4333814,-77.885229,1.0
+Lower Tier,Prescott and Russell,600 Higginson Street,Hawkesbury,K6A 1H1,45.6076688821721,-74.6023666959738,1.0
+Lower Tier,Renfrew,15 Township Hall Road,Stonecliffe,K0J 2K0,46.2130299,-77.8931794,1.0
+Single Tier,Cochrane,"925 Alexandra Street, PO Bag 5000",Hearst,P0L 1N0,49.6869494,-83.6677625,1.0
+Lower Tier,Haliburton,"2249 Loop Road, PO Box 295",Wilberforce,K0L 3C0,45.0362558,-78.2224204,0.75
+Single Tier,Timiskaming,953027 Highway 569,Hilliardton,P0J 1L0,47.7060244,-79.67945,0.5
+Single Tier,Algoma,2983 Base Line,Hilton Beach,P0R 1G0,46.2444441,-83.8968991,0.398125
+Single Tier,Algoma,"3100 Bowker Street, PO Box 25",Hilton Beach,P0R 1G0,46.2578404,-83.8887655,1.0
+Single Tier,Algoma,"68 Front Street, PO Box 370",Hornepayne,P0M 1Z0,49.218428,-84.7751089,0.75
+Lower Tier,Renfrew,2253 Johnston Road,Renfrew,K7V 3Z8,45.5245509,-76.6805319,0.5
+Lower Tier,Huron,"44816 Harriston Road, RR 1",Gorrie,N0G 1X0,43.882013,-81.0658501,1.0
+Single Tier,Timiskaming,"903303 Hanbury Road, RR 3",New Liskeard,P0J 1P0,47.508731,-79.6789029,0.25
+Lower Tier,Muskoka,37 Main Street East,Huntsville,P1H 1A1,45.3263065,-79.21739,1.0
+Upper Tier,Huron,1 Courthouse Square,Goderich,N7A 1M2,43.743263,-81.711398,1.0
+Lower Tier,Huron,"72 Main Street South, PO Box 610",Seaforth,N0K 1W0,43.5514984,-81.3947517,1.0
+Single Tier,Algoma,"7 Bridge Street, PO Box 460",Iron Bridge,P0R 1H0,46.2797361,-83.221977,0.75
+Lower Tier,Bruce,"21 Queen Street, PO Box 130",Ripley,N0G 2R0,44.07226016,-81.58027995,1.0
+Single Tier,Kenora,"34 Highway 17 West, PO Box 248",Ignace,P0T 1T0,49.416669,-91.6610979,0.13196925
+Lower Tier,Oxford,"130 Oxford Street, 2nd Floor",Ingersoll,N5C 2V5,43.037432,-80.88345,1.0
+Lower Tier,Simcoe,2101 Innisfil Beach Road,Innisfil,L9S 1A1,44.3011158176678,-79.6080253721667,1.0
+Single Tier,Cochrane,"253 Main Street, PO Box 230",Iroquois Falls,P0K 1G0,48.7581481,-80.6861577,0.75
+Single Tier,Timiskaming,"1 Young Street, PO Box 10",Elk Lake,P0J 1G0,47.7308647,-80.3339526,0.25
+Single Tier,Algoma,3670 5th Side Road,Hilton Beach,P0R 1G0,46.256732,-83.888585,0.25
+Single Tier,Algoma,"1 Johnson Drive, PO Box 160",Desbarats,P0R 1E0,46.3460454,-83.9187142,0.5
+Single Tier,Parry Sound,"871 Forest Lake Road, PO Box 519",Sundridge,P0A 1Z0,45.7772059,-79.3784612,0.5
+Single Tier,Cochrane,88 Riverside Drive,Kapuskasing,P5N 1B3,49.412489,-82.4239439,1.0
+Single Tier,Kawartha Lakes,26 Francis Street,Lindsay,K9V 5R8,44.3595008,-78.7421309,1.0
+Single Tier,Parry Sound,"8 Main Street, PO Box 38",Kearney,P0A 1M0,45.5581028,-79.2275048,1.0
+Single Tier,Kenora,1 Main Street South,Kenora,P9N 3X2,49.7687493,-94.4893104,1.0
+Single Tier,Timiskaming,"2172 Highway 65 West, RR 1",New Liskeard,P0J 1P0,47.508731,-79.6789029,0.25
+Lower Tier,Renfrew,"1 John Street, PO Box 39",Killaloe,K0J 2A0,45.5561082,-77.4184263,1.0
+Single Tier,Sudbury,"32 Commissioner Street, PO Box 58",Killarney,P0M 2A0,45.9707845,-81.5095999,0.5
+Lower Tier,Bruce,"1475 Concession 5, RR 5",Kincardine,N2Z 2X6,44.2050553,-81.599932,1.0
+Lower Tier,York,2585 King Road,King City,L7B 1A1,43.9240617,-79.5399795,1.0
+Single Tier,Frontenac,216 Ontario Street,Kingston,K7L 2Z3,44.22987,-76.480412,1.0
+Lower Tier,Essex,2021 Division Road North,Kingsville,N9Y 2Y9,42.0597955,-82.7385266,1.0
+Single Tier,Timiskaming,3 Kirkland Street West,Kirkland Lake,P2N 3P4,48.1501201,-80.0326261,0.63
+Lower Tier,Waterloo,200 King Street West,Kitchener,N2G 4G7,43.4516627,-80.4919904,1.0
+Single Tier,Rainy River,28 McDonald Road,Devlin,P0W 1C0,48.6179448,-93.6704419,0.5
+Lower Tier,Essex,5950 Malden Road,LaSalle,N9H 1S4,42.245438,-83.0586,1.0
+Single Tier,Algoma,"3 Pumpkin Point Road West, PO Box 1",Echo Bay,P0S 1C0,46.4896698,-84.0657362,0.25
+Lower Tier,Muskoka,1012 Dwight Beach Road,Dwight,P0A 1H0,45.3247151,-79.0046439,0.45
+Single Tier,Rainy River,"1 Woodside Road, PO Box 16",Lake of the Woods,P0W 1M0,48.8323405,-94.4194522,0.117953260220866
+Lower Tier,Essex,419 Notre Dame Street,Belle River,N8L 0P8,42.29309021,-82.70267406,1.0
+Upper Tier,Lambton,"789 Broadway Street, Box 3000",Wyoming,N0N 1T0,42.956402,-82.1185,1.0
+Lower Tier,Lambton,7883 Amtelecom Parkway,Thedford,N0M 2N0,43.203616,-81.883994,1.0
+Upper Tier,Lanark,99 Christie Lake Road,Perth,K7H 3C6,44.9028959,-76.2676477,1.0
+Lower Tier,Lanark,"75 George Street, PO Box 340",Lanark,K0G 1K0,45.0180807,-76.3649047,1.0
+Single Tier,Timiskaming,"69 Fourth Avenue, PO Box 40",Larder Lake,P0K 1L0,48.0984686,-79.7133935,0.5
+Single Tier,Timiskaming,"10 Main Street, Highway 11",Latchford,P0J 1N0,47.3261996,-79.8107527,0.2835
+Lower Tier,Renfrew,"34465 Highway 17, RR 1",Deep River,K0J 1P0,46.134593,-77.554162,0.75
+Lower Tier,Renfrew,460 Witt Road,Pembroke,K8A 6W5,45.8260909,-77.113541,0.25
+Lower Tier,Essex,111 Erie Street North,Leamington,N8H 2Z9,42.057271,-82.599648,1.0
+Upper Tier,Leeds and Grenville,"25 Central Avenue West, Suite 100",Brockville,K6V 4N6,44.5982115,-75.6955084,1.0
+Lower Tier,Leeds and Grenville,"1233 Prince Street, PO Box 280",Lansdowne,K0E 1L0,44.411101,-76.017707,1.0
+Upper Tier,Lennox and Addington,97 Thomas Street East,Napanee,K7R 4B9,44.2520634,-76.9496879,1.0
+Lower Tier,Hastings,89 Limerick Lake Road,Gilmour,K0L 1W0,44.850601,-77.6363955,1.0
+Lower Tier,Niagara,4800 South Service Road,Beamsville,L3J 1L3,43.1883755,-79.4671215,1.0
+Single Tier,Middlesex,300 Dufferin Avenue,London,N6B 1Z2,42.9877504,-81.2464214,1.0
+Lower Tier,Lennox and Addington,"263 Main Street, PO Box 70",Odessa,K0H 2H0,44.276816237037,-76.7095808444445,0.9
+Lower Tier,Middlesex,"270 Main Street, PO Box 190",Lucan,N0M 2J0,43.1920856741566,-81.4121866557548,1.0
+Single Tier,Algoma,"208 Church Street, PO Box 10",Echo Bay,P0S 1C0,46.4849355,-84.0674648,0.9
+Single Tier,Parry Sound,"73 Municipal Road North, PO Box 70",South River,P0A 1X0,45.8637427,-79.4392271,0.75
+Single Tier,Kenora,"75 Spruce Street, PO Box 249",Vermilion Bay,P0V 2V0,49.8549486,-93.3833221,0.75
+Lower Tier,Renfrew,"85 Bay Street, PO Box 1000",Barry's Bay,K0J 1B0,45.485154,-77.679206,1.0
+Lower Tier,Hastings,"15651 Highway 62, PO Box 503",Eldorado,K0K 1Y0,44.2410246,-77.4371126,0.5
+Single Tier,Parry Sound,"4304 Highway 520, PO Box 70",Magnetawan,P0A 1P0,45.6698083,-79.6511958,0.7125
+Lower Tier,Elgin,87 John Street South,Aylmer,N5H 2C3,42.7716847,-80.9827745,1.0
+Single Tier,Thunder Bay,1 Mississauga Drive,Manitouwadge,P0T 2C0,49.1278775,-85.8243205,1.0
+Lower Tier,Wellington,"7275 Sideroad 16, PO Box 160",Drayton,N0G 1P0,43.7362293,-80.6595583,0.5
+Single Tier,Thunder Bay,4 Hemlo Drive,Marathon,P0T 2E0,48.721154,-86.3712854,1.0
+Lower Tier,York,101 Town Centre Boulevard,Markham,L3R 9W3,43.8564506,-79.3358491,1.0
+Single Tier,Sudbury,"21 Main Street South, PO Box 79",Markstay,P0M 1X0,46.49137638,-80.5425034,1.0
+Lower Tier,Hastings,"12 Bursthall Street, PO Box 459",Marmora,K0K 2M0,44.4839873,-77.6809895,1.0
+Single Tier,Timiskaming,"1 Moyneur Avenue, PO Box 177",Matachewan,P0K 1M0,47.9402064,-80.6432009,0.75
+Single Tier,Nipissing,160 Water Street,Mattawa,P0H 1V0,46.318736,-78.7060186,1.0
+Single Tier,Nipissing,947 Highway 533,Mattawa,P0H 1V0,46.317296,-78.703308,0.25
+Single Tier,Cochrane,"500 Highway 11, PO Box 129",Mattice,P0L 1T0,49.597721,-83.2000152,0.75
+Single Tier,Parry Sound,5 Barager Boulevard,McDougall,P2A 2W9,45.403321,-80.064891,1.0
+Single Tier,Timiskaming,"27 Webster Street, PO Box 99",Virginiatown,P0K 1X0,48.1328616,-79.5852249,0.5
+Single Tier,Parry Sound,"701 Highway 124, PO Box 69",McKellar,P0G 1C0,45.5108543,-79.9210277,1.0
+Single Tier,Parry Sound,"31 William Street, PO Box 70",Sprucedale,P0A 1Y0,45.4891933,-79.4643878,0.5
+Lower Tier,Renfrew,2473 Russett Drive,Arnprior,K7S 3G8,45.4223838,-76.377701,0.5
+Lower Tier,Grey,21 Trowbridge Street West,Meaford,N4L 1A1,44.605721,-80.597681,0.5
+Lower Tier,Dufferin,157101 Highway 10,Melancthon,L9V 2E6,44.1132,-80.2738,1.0
+Lower Tier,Leeds and Grenville,"317 Brock Street West, PO Box 340",Merrickville,K0G 1N0,44.9145337,-75.8411106,1.0
+Upper Tier,Middlesex,399 Ridout Street North,London,N6A 2P1,42.9814735,-81.2536754,1.0
+Lower Tier,Middlesex,"10227 Ilderton Road, RR 2",Ilderton,N0M 2A0,43.0843776,-81.3638271,0.5
+Lower Tier,Simcoe,575 Dominion Avenue,Midland,L4R 1R2,44.7493614153846,-79.8893287538461,1.0
+Lower Tier,Halton,150 Mary Street,Milton,L9T 6Z5,43.510627,-79.883881,1.0
+Lower Tier,Haliburton,"7 Milne Street, PO Box 359",Minden,K0M 2K0,44.9253527,-78.7237252,1.0
+Lower Tier,Wellington,5941 Highway 89,Harriston,N0G 1Z0,43.9708558,-80.8028147,0.45
+Lower Tier,Peel,300 City Centre Drive,Mississauga,L5B 3C1,43.588991,-79.643663,1.0
+Lower Tier,Lanark,"3131 Old Perth Road, PO Box 400",Almonte,K0A 1A0,45.2091867,-76.2109807,1.0
+Lower Tier,Dufferin,347209 Mono Centre Road,Mono,L9W 6S3,44.01285,-80.052486,1.0
+Lower Tier,Lanark,6547 Roger Stevens Drive,Smiths Falls,K7A 4W6,44.9174536,-76.0086119,0.675
+Single Tier,Cochrane,"53 St-Aubin Avenue, PO Box 330",Moonbeam,P0L 1V0,49.3444361,-82.1549654,1.0
+Single Tier,Cochrane,"5 First Street, PO Box 727",Moosonee,P0L 1Y0,51.2724527,-80.6442487,0.5
+Single Tier,Rainy River,"11331 Highway 600, PO Box 40",Stratton,P0W 1N0,48.6772998,-94.129274,0.5
+Lower Tier,Huron,"41342 Morris Road, PO Box 310",Brussels,N0G 1H0,43.7759267,-81.3199294,0.675
+Lower Tier,Dufferin,758070 2nd Line East,Mulmur,L9V 0G8,44.2161524,-80.1184416,1.0
+Upper Tier,Muskoka,70 Pine Street,Bracebridge,P1L 1N3,45.0524223,-79.2991447,1.0
+Lower Tier,Muskoka,"1 Bailey Street, PO Box 129",Port Carling,P0B 1J0,45.116116,-79.57591,1.0
+Single Tier,Sudbury,"64 McIntyre Street, PO Box 220",Nairn Centre,P0M 2L0,46.3336,-81.582851,1.0
+Single Tier,Thunder Bay,4766 Highway 61,Neebing,P7L 0B5,48.214048,-89.4677388,1.0
+Lower Tier,Simcoe,10 Wellington Street East,Alliston,L9R 1H2,44.1495716724138,-79.8687329103448,1.0
+Lower Tier,Middlesex,"22910 Hagerty Road, PO Box 160",Newbury,N0L 1Z0,42.684395,-81.799393,1.0
+Lower Tier,York,"395 Mulock Drive, PO Box 328, Station Main",Newmarket,L3Y 4X7,44.0422047,-79.4580849,1.0
+Upper Tier,Niagara,1815 Sir Isaac Brock Way,Thorold,L2V 4T7,43.1168274,-79.2407623,1.0
+Lower Tier,Niagara,4310 Queen Street,Niagara Falls,L2E 6X5,43.1059593,-79.06385,1.0
+Lower Tier,Niagara,"1593 Four Mile Creek Road, PO Box 100",Virgil,L0S 1T0,43.220372,-79.121794,1.0
+Single Tier,Thunder Bay,"52 Front Street, PO Box 160",Nipigon,P0T 2J0,49.0121981,-88.2633535,1.0
+Single Tier,Parry Sound,"45 Beatty Street, PO Box 250",Nipissing,P0H 1W0,46.094738,-79.5116858,1.0
+Single Tier,Norfolk,50 Colborne Street South,Simcoe,N3Y 4H3,42.835698,-80.306483,1.0
+Lower Tier,Renfrew,1091 Shaw Woods Road,Eganville,K0J 1T0,45.5406943,-77.1004317,0.25
+Single Tier,Nipissing,200 McIntyre Street East,North Bay,P1B 8V6,46.3091944,-79.4606053,1.0
+Lower Tier,Waterloo,"2958 Greenfield Road, PO Box 1060",Ayr,N0B 1E0,43.331567,-80.434549,1.0
+Lower Tier,"Stormont, Dundas and Glengarry","636 St. Lawrence Street, PO Box 489",Winchester,K0C 2K0,45.083128,-75.3475009,1.0
+Lower Tier,Frontenac,6648 Road 506,Plevna,K0H 2M0,44.95672,-76.9845,0.5
+Lower Tier,"Stormont, Dundas and Glengarry","3720 County Road 34, RR 2",Alexandria,K0C 1A0,45.309036,-74.634788,0.5
+Lower Tier,Leeds and Grenville,285 County Road 44,Kemptville,K0G 1J0,45.0243336,-75.6538035,0.95
+Lower Tier,Huron,"274 Josephine Street, PO Box 90",Wingham,N0G 2W0,43.887185,-81.312439,1.0
+Lower Tier,Peterborough,"280 Burleigh Street, PO Box 550",Apsley,K0L 1A0,44.7605174,-78.0881465,1.0
+Lower Tier,Middlesex,"229 Parkhill Main Street, PO Box 9",Parkhill,N0M 2K0,43.162492,-81.684414,1.0
+Lower Tier,Perth,330 Wallace Avenue North,Listowel,N4W 1L3,43.7337026622642,-80.9512599132076,1.0
+Lower Tier,"Stormont, Dundas and Glengarry","15 Union Street, PO Box 99",Berwick,K0C 1G0,45.1813323,-75.112195,0.95
+Single Tier,Manitoulin,"14 Water Street, PO Box 608",Little Current,P0P 1K0,45.9813152,-81.9265618,1.0
+Lower Tier,Bruce,56 Lindsay Road 5,Lion's Head,N0H 1W0,44.9876357,-81.2539166,0.25
+Upper Tier,Northumberland,555 Courthouse Road,Cobourg,K9A 5J6,43.9732416,-78.194178,1.0
+Lower Tier,Oxford,285767 Airport Road,Norwich,N0J 1P0,42.975128,-80.581642,1.0
+Single Tier,Thunder Bay,330 Highway 595,Kakabeka Falls,P0T 1W0,48.3908743,-89.7008136,0.5
+Lower Tier,Halton,1225 Trafalgar Road,Oakville,L6H 0H3,43.4673437,-79.6876491,1.0
+Lower Tier,Lambton,"4591 Oil Springs Line, PO Box 22",Oil Springs,N0N 1P0,42.7836472,-82.1201906,1.0
+Single Tier,Thunder Bay,3250 Highway 130,Rosslyn,P7K 0B1,48.357904,-89.4427198,0.5
+Single Tier,Cochrane,"50 Government Road, PO Box 100",Opasatika,P0L 1Z0,49.5255962,-82.8516079,0.25
+Lower Tier,Dufferin,87 Broadway,Orangeville,L9W 1K1,43.920119,-80.0942866,1.0
+Single Tier,Simcoe,"50 Andrew Street South, Suite 300",Orillia,L3V 7T5,44.606535,-79.419829,1.0
+Lower Tier,Simcoe,148 Line 7 South,Oro-Medonte,L0L 2E0,44.475037,-79.530945,1.0
+Lower Tier,Durham,50 Centre Street South,Oshawa,L1H 3Z7,43.8956525,-78.865856,1.0
+Lower Tier,Peterborough,"20 Third Street, PO Box 70",Keene,K0L 2G0,44.2433622,-78.1617601,1.0
+Single Tier,Ottawa,110 Laurier Avenue West,Ottawa,K1P 1J1,45.4211868,-75.6904002,1.0
+Lower Tier,Grey,808 2nd Avenue East,Owen Sound,N4K 2H4,44.564233,-80.9428347,1.0
+Upper Tier,Oxford,"21 Reeve Street, PO Box 1614",Woodstock,N4S 7Y3,43.1296481,-80.7556335,1.0
+Single Tier,Nipissing,"4861 Highway 17, PO Box 630",Mattawa,P0H 1V0,46.3064941252716,-78.7465427501878,1.0
+Single Tier,Parry Sound,52 Seguin Street,Parry Sound,P2A 1B4,45.3433982,-80.034946,1.0
+Upper Tier,Peel,"10 Peel Centre Drive, Suite A",Brampton,L6T 4B9,43.716905,-79.722266,1.0
+Single Tier,Essex,1045 West Shore Road,Pelee Island,N0R 1M0,41.7638171,-82.688728,1.0
+Lower Tier,Niagara,"20 Pelham Town Square, PO Box 400",Fonthill,L0S 1E0,43.044114,-79.2838084,1.0
+Single Tier,Renfrew,1 Pembroke Street East,Pembroke,K8A 3J5,45.8267628,-77.1117926,1.0
+Lower Tier,Simcoe,"10 Robert Street West, PO Box 5009",Penetanguishene,L9M 2G2,44.7682277363636,-79.9347847545455,1.0
+Single Tier,Parry Sound,"1695 Emsdale Road, PO Box 70",Emsdale,P0A 1J0,45.5113237,-79.3029569,1.0
+Lower Tier,Lanark,80 Gore Street East,Perth,K7H 1H9,44.8990978,-76.2488053,1.0
+Upper Tier,Perth,1 Huron Street,Stratford,N5A 5S4,43.3716,-80.9846156,1.0
+Lower Tier,Perth,"25 Mill Street East, PO Box 455",Milverton,N0K 1M0,43.5644828666667,-80.91902625,1.0
+Lower Tier,Perth,3191 Road 122,St. Pauls,N0K 1V0,43.3159048,-81.0593897,0.5
+Lower Tier,Renfrew,1111 Victoria Street,Petawawa,K8H 2E6,45.9007027,-77.2758879,1.0
+Upper Tier,Peterborough,470 Water Street,Peterborough,K9H 3M3,44.3076297,-78.3170123,1.0
+Single Tier,Peterborough,500 George Street North,Peterborough,K9H 3R9,44.3090791,-78.320279,0.75
+Lower Tier,Lambton,411 Greenfield Street,Petrolia,N0N 1R0,42.881119,-82.1467356,1.0
+Lower Tier,Durham,One The Esplanade,Pickering,L1V 6K7,43.8382737,-79.0834284,0.9
+Single Tier,Kenora,"2 Anne Street South, PO Box 340",Pickle Lake,P0V 3A0,51.458637,-90.1999808,0.25
+Single Tier,Algoma,"38 Railway Crescent, PO Box 250",Bruce Mines,P0R 1C0,46.3005554,-83.7911111,0.25
+Lower Tier,Lambton,"546 Niagara Street, PO Box 250",Wyoming,N0N 1T0,42.9496749973075,-82.1194830493148,1.0
+Lower Tier,Lambton,135 Kendall Street,Point Edward,N7V 4G6,42.9943833,-82.4013736,1.0
+Lower Tier,Niagara,66 Charlotte Street,Port Colborne,L3K 3C8,42.884655,-79.252036,1.0
+Lower Tier,Northumberland,56 Queen Street,Port Hope,L1A 3Z9,43.9491514,-78.2935162,1.0
+Single Tier,Parry Sound,"250 Clark Street, PO Box 250",Powassan,P0H 1Z0,46.0823472,-79.3647758,1.0
+Single Tier,Leeds and Grenville,"360 Dibble Street West, PO Box 160",Prescott,K0E 1T0,44.7094206,-75.5189032,1.0
+Upper Tier,Prescott and Russell,"59 Court Street, PO Box 304",Champlain,K0B 1K0,45.618616,-74.6899071,1.0
+Single Tier,Algoma,"3042 Second Line West, RR 1",Prince Township,P6A 6K4,46.535595,-84.501625,1.0
+Single Tier,Prince Edward,332 Main Street,Picton,K0K 2T0,44.0093831,-77.1385213,1.0
+Lower Tier,Wellington,7404 Wellington Road 34,Puslinch,N0B 2J0,43.4746969550851,-80.1528831488949,1.0
+Single Tier,Hastings,"7 Creswell Drive, PO Box 490",Trenton,K8V 5R6,44.0988496967964,-77.5763986973842,1.0
+Single Tier,Rainy River,"201 Atwood Avenue, PO Box 488",Rainy River,P0W 1L0,48.7221782,-94.5674489,0.75
+Lower Tier,Simcoe,"2297 Highway 12, PO Box 130",Brechin,L0K 1B0,44.5473915538462,-79.1765147538462,1.0
+Single Tier,Kenora,"2 Fifth Street, PO Box 1000",Balmertown,P0V 1C0,51.0565281,-93.7436785,1.0
+Single Tier,Thunder Bay,"42 Salls Street, PO Box 447",Red Rock,P0T 2P0,48.9402165,-88.2606999,1.0
+Upper Tier,Renfrew,9 International Drive,Pembroke,K8A 6W5,45.8053824,-77.1223145,1.0
+Lower Tier,Renfrew,127 Raglan Street South,Renfrew,K7V 1P8,45.472977,-76.685206,1.0
+Lower Tier,York,225 East Beaver Creek Road,Richmond Hill,L4B 3P4,43.8468863,-79.3793335,1.0
+Lower Tier,Leeds and Grenville,1439 County Road 8,Delta,K0E 1G0,44.6091375,-76.1226195,0.25
+Lower Tier,Prescott and Russell,717 Notre-Dame Street,Embrun,K0A 1W1,45.2677672,-75.3056278,1.0
+Single Tier,Parry Sound,"28 Midlothian Road, RR 1",Burks Falls,P0A 1C0,45.6231208,-79.39170519,0.25
+Single Tier,Sudbury,11 Birch Lake Road,Massey,P0P 1P0,46.214949,-82.066139,1.0
+Lower Tier,Lambton,255 Christina Street North,Sarnia,N7T 7N2,42.9749548,-82.4062028,0.75
+Lower Tier,Bruce,"600 Tomlinson Drive, PO Box 820",Port Elgin,N0H 2C0,44.4501673,-81.3755874,1.0
+Single Tier,Algoma,99 Foster Drive,Sault Ste. Marie,P6A 5X6,46.5066013,-84.3341391,1.0
+Single Tier,Thunder Bay,"204 Alberta Street, PO Box 40",Schreiber,P0T 2S0,48.8032731,-87.2653884,1.0
+Lower Tier,Durham,"181 Perry Street, PO Box 780",Port Perry,L9L 1A7,44.105366,-78.9448126,1.0
+Single Tier,Parry Sound,5 Humphrey Drive,Seguin,P2A 2W8,45.282368,-79.814188,0.9
+Lower Tier,Peterborough,"1310 Centre Line, PO Box 270",Selwyn,K9J 6X5,44.4058003,-78.3376551,0.75
+Lower Tier,Simcoe,1024 Hurlwood Lane,Severn,L3V 6H4,44.6311611,-79.4398904,1.0
+Lower Tier,Dufferin,203 Main Street East,Shelburne,L9V 3K7,44.0784127,-80.203261,1.0
+Single Tier,Thunder Bay,420 Leslie Avenue,Thunder Bay,P7A 1X8,48.465988,-89.184714,1.0
+Upper Tier,Simcoe,1110 Highway 26,Midhurst,L9X 1N6,44.4461684,-79.743127,1.0
+Single Tier,Kenora,"25 Fifth Avenue, PO Box 158",Sioux Lookout,P8T 1A4,50.0999792,-91.9190512,1.0
+Single Tier,Kenora,"5521 Highway 71, PO Box 417",Sioux Narrows,P0X 1N0,49.3986957,-94.0566848,0.5
+Single Tier,Lanark,77 Beckwith Street North,Smiths Falls,K7A 2B8,44.90227,-76.021326,1.0
+Single Tier,Cochrane,"142 First Avenue, PO Box 249",Smooth Rock Falls,P0L 2B0,49.2773328,-81.6350918,0.5
+Single Tier,Nipissing,"7 Third Avenue, PO Box 217",Whitney,K0J 2M0,45.4860979,-78.2406748,0.5
+Lower Tier,Bruce,"21 Gordon Street East, PO Box 540",Teeswater,N0G 2S0,43.9958594,-81.2828186,1.0
+Lower Tier,Bruce,"315 George Street, PO Box 310",Wiarton,N0H 2T0,44.7418205285714,-81.1411702142857,1.0
+Lower Tier,"Stormont, Dundas and Glengarry","34 Ottawa Street, PO Box 740",Morrisburg,K0C 1X0,44.8971851,-75.1835381,1.0
+Lower Tier,Frontenac,"4432 George Street, PO Box 100",Sydenham,K0H 2T0,44.4130594,-76.5947425,1.0
+Lower Tier,"Stormont, Dundas and Glengarry","6 Oak Street, PO Box 220",Lancaster,K0C 1N0,45.1403388240718,-74.500579271054,1.0
+Lower Tier,Huron,"322 Main Street South, PO Box 759",Exeter,N0M 1S6,43.3477209096774,-81.480489316129,1.0
+Single Tier,Parry Sound,"63 Marie Street, PO Box 310",South River,P0A 1X0,45.8410246,-79.3831402,1.0
+Lower Tier,"Stormont, Dundas and Glengarry","2 Mille Roches Road, PO Box 84",Long Sault,K0C 1P0,45.029581,-74.8912859,1.0
+Lower Tier,Oxford,"312915 Dereham Line, RR 1",Mt. Elgin,N0J 1N0,42.9258596,-80.8113094,1.0
+Lower Tier,Grey,"185667 Grey Road 9, RR 1",Dundalk,N0C 1B0,44.1604492,-80.4036027,0.45
+Lower Tier,Middlesex,"153 McKellar Street, PO Box 218",Glencoe,N0L 1M0,42.747533,-81.711821,1.0
+Lower Tier,Elgin,35663 Fingal Line,Fingal,N0L 1K0,42.71035,-81.313097,1.0
+Single Tier,Algoma,"8 Trunk Road, PO Box 70",Spanish,P0P 2A0,46.1922774846677,-82.3460850614098,1.0
+Lower Tier,Simcoe,2231 Nursery Road,Minesing,L9X 1A8,44.453484,-79.766472,1.0
+Lower Tier,Niagara,"50 Church Street, PO Box 3012",St. Catharines,L2R 7C2,43.159407,-79.246996,1.0
+Lower Tier,Lambton,1155 Emily Street,Mooretown,N0N 1M0,42.8431313329128,-82.4634183054001,1.0
+Single Tier,Algoma,"1669 Arthur Street, PO Box 187",Richards Landing,P0R 1J0,46.2871786,-84.0321377,1.0
+Single Tier,Perth,"175 Queen Street East, PO Box 998",St. Marys,N4X 1B6,43.2597025,-81.1406121,1.0
+Single Tier,Elgin,"545 Talbot Street, PO Box 520",St. Thomas,N5P 3V7,42.7794441,-81.1927948,1.0
+Single Tier,Sudbury,"2 King Street East, PO Box 70",St.-Charles,P0M 2W0,46.3624379,-80.4158515,1.0
+Lower Tier,Hastings,"2529 Stirling-Marmora Road, PO Box 40",Stirling,K0K 3E0,44.306974193791,-77.5538371907905,1.0
+Lower Tier,Lennox and Addington,4504 County Road 4,Centreville,K0K 1N0,44.4058446,-76.9041161,1.0
+Upper Tier,"Stormont, Dundas and Glengarry","26 Pitt Street, Suite 323",Cornwall,K6J 3P2,45.0157170326087,-74.727385226087,1.0
+Single Tier,Perth,1 Wellington Street,Stratford,N5A 2L3,43.370093,-80.982212,1.0
+Lower Tier,Middlesex,52 Frank Street,Strathroy,N7G 2R8,42.958814,-81.626236,1.0
+Single Tier,Parry Sound,"28 Municipal Lane, PO Box 1120",Sundridge,P0A 1Z0,45.7598063,-79.4067626,0.5
+Single Tier,Parry Sound,"110 Main Street, PO Box 129",Sundridge,P0A 1Z0,45.771826419254,-79.3889522016242,1.0
+Single Tier,Algoma,27 Barr Road South,Desbarats,P0R 1E0,46.346326,-83.9229137,0.25
+Lower Tier,Simcoe,"450 Park Street, PO Box 100",Victoria Harbour,L0K 2A0,44.74723,-79.76251,1.0
+Lower Tier,Lanark,217 Harper Road,Perth,K7H 3C6,44.888861,-76.3174388,1.0
+Lower Tier,Essex,917 Lesperance Road,Tecumseh,N8N 1W9,42.315274494958,-82.8872857840336,1.0
+Single Tier,Manitoulin,"456 Highway 542A, PO Box 19",Tehkummah,P0P 2C0,45.6564466,-82.0001013,0.5
+Single Tier,Nipissing,"7 Lakeshore Drive, PO Box 220",Temagami,P0H 2H0,47.0626274,-79.7913012,0.5
+Single Tier,Timiskaming,"325 Farr Drive, PO Box 2050",Haileybury,P0J 1K0,47.4442408,-79.628663,0.5
+Single Tier,Thunder Bay,1 Selkirk Avenue,Terrace Bay,P0T 2W0,48.7832983,-87.1025134,0.5
+Lower Tier,Middlesex,4305 Hamilton Road,Dorchester,N0L 1G3,42.9857569,-81.0495134,1.0
+Single Tier,Parry Sound,"9 James Street, PO Box 255",Parry Sound,P2A 1T4,45.3423416,-80.0337415,1.0
+Lower Tier,Grey,"32 Mill Street, PO Box 310",Thornbury,N0H 2P0,44.5617814,-80.4499081,1.0
+Lower Tier,Prescott and Russell,958 Route 500 West,Casselman,K0A 1M0,45.3193176,-75.1166169,0.75
+Single Tier,Algoma,"1385 Highway 17, PO Box 108",Algoma Mills,P0R 1A0,46.194452,-82.7405704,0.75
+Single Tier,Algoma,"187 Main Street, PO Box 220",Thessalon,P0R 1L0,46.2569208,-83.5563867,0.9
+Single Tier,Timiskaming,"1 Main Street, PO Box 119",Thornloe,P0J 1S0,47.6677119,-79.7609894,0.75
+Lower Tier,Niagara,3540 Schmon Parkway,Thorold,L2V 4A7,43.118032,-79.238418,1.0
+Single Tier,Thunder Bay,500 Donald Street East,Thunder Bay,P7C 5K4,48.3824198,-89.2457514,1.0
+Lower Tier,Oxford,10 Lisgar Avenue,Tillsonburg,N4G 5A5,42.86329,-80.726573,1.0
+Single Tier,Cochrane,220 Algonquin Boulevard East,Timmins,P4N 1B3,48.4762286,-81.3293539,1.0
+Lower Tier,Simcoe,130 Balm Beach Road West,Tiny,L0L 2J0,44.7025783606241,-79.9811323162459,1.0
+Single Tier,Toronto,100 Queen Street West,Toronto,M5H 2N1,43.6520357,-79.3841028,1.0
+Lower Tier,Northumberland,"66 Front Street South, PO Box 1030",Campbellford,K0L 1L0,44.3061516,-77.7985796,1.0
+Lower Tier,Peterborough,760 County Road 36,Trent Lakes,K0M 1A0,44.5882686,-78.4891942,0.5625
+Lower Tier,Hastings,371 Weslemkoon Lake Road,Gilmour,K0L 1W0,44.8197174,-77.6145242,1.0
+Lower Tier,Hastings,"255 Metcalf Street, Postal Bag 729",Tweed,K0K 3J0,44.4772624,-77.3138553,1.0
+Lower Tier,Hastings,"859 Melrose Road, RR 1",Shannonville,K0K 3A0,44.2534972,-77.2028283,1.0
+Lower Tier,Durham,"51 Toronto Street South, PO Box 190",Uxbridge,L9P 1T1,44.10578,-79.12284,1.0
+Single Tier,Cochrane,"2 de l’Église Avenue, PO Box 1010",Val Rita-Harty,P0L 2G0,49.4405027,-82.529756,0.25
+Lower Tier,York,2141 Major Mackenzie Drive,Vaughan,L6A 1T1,43.855872,-79.507923,1.0
+Lower Tier,Niagara,"31940 Highway 3, PO Box 40",Wainfleet,L0S 1V0,42.9189395,-79.3678284,0.7125
+Lower Tier,Lambton,"5280 Nauvoo Road, PO Box 10",Watford,N0M 2S0,42.9470023,-81.8798622,1.0
+Lower Tier,Simcoe,30 Lewis Street,Wasaga Beach,L9Z 1A1,44.5207571,-80.0166035,1.0
+Upper Tier,Waterloo,150 Frederick Street,Kitchener,N2G 4J3,43.4526689,-80.484731,1.0
+Lower Tier,Waterloo,"100 Regina Street South, PO Box 337, Station Waterloo",Waterloo,N2J 4A8,43.4631131,-80.520333,1.0
+Single Tier,Algoma,"40 Broadway Avenue, PO Box 500",Wawa,P0S 1K0,47.9964128,-84.771246,1.0
+Lower Tier,Niagara,60 East Main Street,Welland,L3B 3X4,42.9924851,-79.248977,1.0
+Lower Tier,Waterloo,4805 William Hastings Line,St. Clements,N0B 2M0,43.5273301,-80.7383343,0.75
+Upper Tier,Wellington,74 Woolwich Street,Guelph,N1H 3T9,43.5473236,-80.2480926,1.0
+Lower Tier,Wellington,"7490 Sideroad 7 West, PO Box 125",Kenilworth,N0G 2E0,43.897208932685,-80.6325350109397,1.0
+Lower Tier,Elgin,"22413 Hoskins Line, PO Box 490",Rodney,N0L 2C0,42.5731497,-81.7127707,0.75
+Lower Tier,Grey,402813 Grey Road 4,Durham,N0G 1R0,44.187837,-80.7680083,0.5
+Lower Tier,Niagara,"318 Canborough Street, PO Box 400",Smithville,L0R 2A0,43.0945485,-79.5488144,1.0
+Single Tier,Nipissing,"225 Holditch Street, Suite 101",Sturgeon Falls,P2B 1T1,46.3665067,-79.9312839,1.0
+Lower Tier,Perth,"169 St. David Street, PO Box 609",Mitchell,N0K 1N0,43.4679324,-81.1900897,1.0
+Lower Tier,Leeds and Grenville,"30 Bedford Street, PO Box 68",Westport,K0G 1X0,44.6800544,-76.3979809,1.0
+Lower Tier,Durham,575 Rossland Road East,Whitby,L1N 2M8,43.8976172833333,-78.9486048666667,1.0
+Lower Tier,York,111 Sandiford Drive,Stouffville,L4A 0Z8,43.96374,-79.2689771,1.0
+Single Tier,Algoma,"102 Durham Street, PO Box 307",White River,P0M 3G0,48.5898813,-85.2753208,0.5
+Single Tier,Parry Sound,"21 Church Street, PO Box 70","Dunchurch, Whitestone",P0A 1G0,45.643515,-79.855568,1.0
+Lower Tier,Renfrew,"44 Main Street, PO Box 40",Cobden,K0J 1K0,45.6268397,-76.8836889,1.0
+Lower Tier,Waterloo,60 Snyder’s Road West,Baden,N3A 1A1,43.4042714,-80.6716325,1.0
+Single Tier,Essex,350 City Hall Square West,Windsor,N9A 6S1,42.317471,-83.035322,1.0
+Lower Tier,Hastings,"90 Wollaston Lake Road, PO Box 99",Coe Hill,K0L 1P0,44.8583996,-77.8335121,1.0
+Lower Tier,Oxford,"500 Dundas Street, PO Box 1539",Woodstock,N4S 0A7,43.1300606,-80.7563569,1.0
+Lower Tier,Waterloo,"24 Church Street West, PO Box 158",Elmira,N3B 2Z6,43.6002426,-80.5597077,1.0
+Upper Tier,York,17250 Yonge Street,Newmarket,L3Y 8V3,44.0455597,-79.4784694,1.0
+Lower Tier,Oxford,"163 Brock Street, PO Box 189",Thamesford,N0M 2M0,43.0567852153846,-80.9997425692308,1.0
