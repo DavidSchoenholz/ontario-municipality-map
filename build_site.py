@@ -1,4 +1,5 @@
 import json
+from collections import Counter
 from pathlib import Path
 
 import numpy as np
@@ -111,6 +112,11 @@ def name_municipalities(sites, boundaries):
     for site in sites:
         # Lower and single tier offices are named after their municipality; regional offices after their area.
         site["n"] = (site["m"] or site["c"]) if site["t"] != "Upper Tier" else f"{site['a']} – regional office"
+    # Offices that land in the same municipality (see the checks) would share a name; add the street to tell them apart.
+    counts = Counter(site["n"] for site in sites)
+    for site in sites:
+        if counts[site["n"]] > 1:
+            site["n"] += f" ({site['ad'].split(',')[0]})"
     return problems
 
 

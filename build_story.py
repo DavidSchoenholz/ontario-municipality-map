@@ -31,8 +31,10 @@ for pop_field in ("pl", "pr"):
     assert biggest is toronto, f"{biggest['n']} has the most people in {pop_field}, not Toronto"
 assert len(niagara_local) == 12, f"Niagara has {len(niagara_local)} local offices, not 12"
 
-total = len(sites) + sum(len(s["also"]) for s in sites)
-low_confidence = sum(1 for s in sites if s["cf"] < 0.9) + 0  # merged duplicates are not counted separately
+# Count from the office list itself: sites.json merges offices that share coordinates.
+offices = pd.read_csv(OFFICES_PATH)
+total = len(offices)
+low_confidence = int((offices["confidence"] < 0.9).sum())
 checks = len(pd.read_csv(CHECKS_PATH))
 fmt = "{:,}".format
 

@@ -116,7 +116,7 @@ ul.notes{color:var(--muted);font-size:15px;padding-left:20px}
   <ul class="notes">
     <li>Distances are straight-line, not driving distance, and are weighted by 2021 census population (dissemination-area centres).</li>
     <li>Only land inside Ontario's lower- and single-tier municipal boundaries is mapped, which covers 99.3% of the province's population. Unincorporated areas are left blank.</li>
-    <li>Offices come from a hand-collected list; about 115 of the 444 have geocodes with confidence below 0.9 and may be a little off. 62 possible data issues are listed in <code>data/office_checks.csv</code>.</li>
+    <li>Offices come from a hand-collected list; about 122 of the 444 have geocodes with confidence below 0.9 and may be a little off. 62 possible data issues are listed in <code>data/office_checks.csv</code>.</li>
   </ul>
 </section>
 
@@ -125,7 +125,7 @@ const STEPS={"province": {"state": {"view": "local", "shade": "tier", "center": 
 const frame=document.getElementById('map'),caption=document.getElementById('caption');
 let current=STEPS.province,ready=false;
 function send(){if(ready&&frame.contentWindow)frame.contentWindow.postMessage(Object.assign({type:'state'},current.state),'*');caption.textContent=current.caption;}
-window.addEventListener('message',e=>{if(e.data&&e.data.type==='ready'){ready=true;send();}});
+window.addEventListener('message',e=>{if(e.source===frame.contentWindow&&e.data&&e.data.type==='ready'){ready=true;send();}});
 const steps=[...document.querySelectorAll('.step')];
 function activate(el){steps.forEach(s=>s.classList.toggle('active',s===el));current=STEPS[el.dataset.step];send();}
 activate(steps[0]);

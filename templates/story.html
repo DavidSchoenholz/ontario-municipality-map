@@ -125,7 +125,7 @@ const STEPS=__STEPS__;
 const frame=document.getElementById('map'),caption=document.getElementById('caption');
 let current=STEPS.province,ready=false;
 function send(){if(ready&&frame.contentWindow)frame.contentWindow.postMessage(Object.assign({type:'state'},current.state),'*');caption.textContent=current.caption;}
-window.addEventListener('message',e=>{if(e.data&&e.data.type==='ready'){ready=true;send();}});
+window.addEventListener('message',e=>{if(e.source===frame.contentWindow&&e.data&&e.data.type==='ready'){ready=true;send();}});
 const steps=[...document.querySelectorAll('.step')];
 function activate(el){steps.forEach(s=>s.classList.toggle('active',s===el));current=STEPS[el.dataset.step];send();}
 activate(steps[0]);

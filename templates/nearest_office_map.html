@@ -18,6 +18,7 @@ html,body,#map{height:100%;margin:0;font-family:system-ui,sans-serif}
 .hint{color:#555;font-size:12px}
 #hover{position:absolute;left:10px;bottom:24px;z-index:1000;background:#fff;padding:8px 12px;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,.3);font-size:13px;min-width:220px;max-width:360px;pointer-events:none}
 .pop small{color:#666}
+@media (max-width:600px){.panel{width:calc(100vw - 70px);max-height:55vh}#hover{min-width:0;max-width:calc(100vw - 20px)}}
 </style></head><body><div id="map"></div><div id="hover">Move the mouse over the map</div>
 <script>
 const SITES=__SITES__;
@@ -120,7 +121,9 @@ function frame(){ // view transform: unit coords -> container px
 }
 function draw(){
   vp=frame();const {scale,ox,oy,w,h}=vp;
-  for(const c of [cv,cvB,cvH]){c.width=w;c.height=h;L.DomUtil.setPosition(c,map.containerPointToLayerPoint([0,0]));}
+  const dpr=window.devicePixelRatio||1; // draw in CSS pixels, back the canvases at device resolution
+  for(const c of [cv,cvB,cvH]){c.width=w*dpr;c.height=h*dpr;c.style.width=w+'px';c.style.height=h+'px';
+    c.getContext('2d').setTransform(dpr,0,0,dpr,0,0);L.DomUtil.setPosition(c,map.containerPointToLayerPoint([0,0]));}
   // outline path with culling (rings entirely off-screen are skipped)
   const m=40/scale, ux1=(ox+w)/scale+m, uy1=(oy+h)/scale+m, ux0=ox/scale-m, uy0=oy/scale-m;
   outlinePath=new Path2D();
@@ -184,7 +187,8 @@ function drawHi(){
   ctxH.globalAlpha=1;ctxH.strokeStyle='#000';ctxH.lineWidth=2.5;ctxH.stroke();
   ctxH.restore();
 }
-map.on('move zoom resize',draw);
+let drawQueued=false; // move/zoom fire many times per frame while panning; redraw once per frame
+map.on('move zoom resize',()=>{if(!drawQueued){drawQueued=true;requestAnimationFrame(()=>{drawQueued=false;draw();});}});
 
 // office dots (only at their real position)
 const dots=L.layerGroup().addTo(map);
@@ -203,7 +207,7 @@ function onLand(lon,lat){const px=mx(lon),py=my(lat);let ins=false;
   return ins;}
 function hav(a,b,c,d){const R=6371,r=Math.PI/180,dl=(c-a)*r,dn=(d-b)*r;
   const h=Math.sin(dl/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin(dn/2)**2;return 2*R*Math.asin(Math.sqrt(h));}
-function nearest(ll){const [x,y]=fwd(ll.lng,ll.lat);return delaunay.find(x,y);}
+function nearest(ll){const [x,y]=fwd(ll.lng,ll.lat);return delaunay.find(x,y,Math.max(hi,0));}
 function info(s,ll,what){ // ll is optional: without it the popup has no distance line
   let h='<div class="pop"><b>'+esc(s.n)+'</b><br>'+esc(s.t)+(s.a?' &middot; '+esc(s.a):'')+'<br>';
   if(s.ad)h+=esc(s.ad)+', '+esc(s.c)+' '+esc(s.pc)+'<br>';
@@ -263,7 +267,7 @@ ctl.onAdd=()=>{const el=L.DomUtil.create('div','panel');L.DomEvent.disableClickP
  el.querySelector('#shade').onchange=e=>{shade=e.target.value;setShadeScale();draw();};
 
  // search: offices/towns/postal codes are matched locally; anything else can be looked up as an address
- const norm=t=>String(t||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+ const norm=t=>String(t||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
  const INDEX=SITES.map(s=>({s,k:norm([s.n,s.c,s.m,s.a,s.pc,s.ad].join(' | '))}));
  const q=el.querySelector('#q'),results=el.querySelector('#results');
  function goToOffice(s){here.clearLayers();results.innerHTML='';map.setView([s.lat,s.lon],11);
@@ -310,7 +314,7 @@ function applyState(m){
 if(EMBED){
   ctl.getContainer().style.display='none';
   map.scrollWheelZoom.disable();
-  window.addEventListener('message',e=>{if(e.data&&e.data.type==='state')applyState(e.data);});
+  window.addEventListener('message',e=>{if(e.source===parent&&e.data&&e.data.type==='state')applyState(e.data);});
   if(parent!==window)parent.postMessage({type:'ready'},'*');
 }
 </script></body></html>
